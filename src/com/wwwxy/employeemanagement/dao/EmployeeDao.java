@@ -186,9 +186,10 @@ public class EmployeeDao extends JDBCUtil{
 		return ee;
 	}
 	//增加员工
-	public void AddEmployee(EmployeeEntity ee){
+	public int AddEmployee(EmployeeEntity ee){
 		Connection con = getConnection();
 		PreparedStatement ps = null;
+		int row=0;
 		String sql = "insert into employee (empname,empsex,empage,empbirthday,empbasic,empemail,empaddress) values(?,?,?,?,?,?,?)";
 		try {
 			ps= con.prepareStatement(sql);
@@ -199,7 +200,7 @@ public class EmployeeDao extends JDBCUtil{
 			ps.setFloat(5, ee.getEmpBasic());
 			ps.setString(6, ee.getEmpEmail());
 			ps.setString(7, ee.getEmpAddress());
-			ps.executeUpdate();
+			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -217,6 +218,7 @@ public class EmployeeDao extends JDBCUtil{
 			LoginEntity le = new LoginEntity(0, username, null, null, GetMaxId(), 0);
 			new LoginDao().addLogin(le);
 		}
+		return row;
 	}
 	
 	//查询员工最大id
