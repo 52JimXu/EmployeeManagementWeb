@@ -68,22 +68,22 @@
 
 
 <center>
-	<h1>欢迎来到工资记录新增</h1>
-		<form name="myform" onsubmit="return checkAll()">
+	<h1>欢迎来到员工信息新增</h1>
+		<form name="myform" action="doaddemployee.jsp" onsubmit="return checkAll()">
 			<div id="n">
-			<label for="inputs">员工姓名:</label><input onblur="checkname()" id="nameinput" type="text"  value="">
+			<label for="inputs">员工姓名:</label><input name="empname" onblur="checkname()" id="nameinput" type="text"  value="">
 			<span id ="name"></span>
 			<br><br>
 			</div>
 			<label for="inputs">员工性别:</label>
 			
-			<input name="sex" type="radio" value="男" />男
-			<input name="sex" type="radio" value="女" />女
+			<input name="sex" class="sex" type="radio" value="男" />男
+			<input name="sex" class="sex" type="radio" value="女" />女
 			
 
 
 			<br><br>
-			<div class="empage"><label for="inputs">员工年龄:</label><input id="empage" type="text" disabled  value="118"><span class="bkxg">*请通过修改生日新增年龄</span><br><br></div>
+			<div class="empage"><label for="inputs">员工年龄:</label><input name="empage" id="empage" type="text" readonly value="118"><span class="bkxg">*请通过修改生日新增年龄</span><br><br></div>
 			<label for="inputs">员工生日:</label>
 			<select name="year" id="year" onchange="getday()" >
         		<option value="1990">1990</option>
@@ -98,17 +98,17 @@
 			
 			<br><br>
 			<div id="b">
-			<label for="inputs">员工工资:</label><input  type="text" onblur="validate()" id="basicinput"  value="">
+			<label for="inputs">员工工资:</label><input name="empbasic"  type="text" onblur="validate()" id="basicinput"  value="">
 			<span id ="basic"></span>
 			<br><br>
 			</div>
 			<div id="big">
-			<label for="inputs">员工邮箱:</label><input  type="text" onblur="isEmail(this.value)" id="emailinput"  value="">
+			<label for="inputs">员工邮箱:</label><input name="empemail" type="text" onblur="isEmail(this.value)" id="emailinput"  value="">
 			<span id ="email"></span>
 			<br><br>
 			</div>
 			<div id ="a">
-			<label for="inputs">员工地址:</label><input id="addressinput" onblur="checkaddress()" type="text"  value="">
+			<label for="inputs">员工地址:</label><input id="addressinput" name="empaddress" onblur="checkaddress()" type="text"  value="">
 			<span id ="address"></span>
 			<br><br>
 			</div>
@@ -203,28 +203,30 @@ function isEmail(strEmail) {
 function checkAll(){
 	var flag = false;
 	var emailinput = document.getElementById("emailinput").value;
-	if(checkname()){
-		alert("name");
-		flag =true;
-		if(checksex()){
+		if(checkname()&&checksex()&&validate()&&isEmail(emailinput)&&checkaddress()){
 			flag=true;
+			
 		}else{
 			flag=false;
 		}
-	}else{
-		return false;
-	}
+			
 	return flag;
 
 
 }
 function checksex(){
-	var sex = document.myforn.sex;
-	if(sex.value=""){
-		alert("空");
-		return false;
-	}else{
+	var sex = document.getElementsByClassName("sex");
+	var flag = false;
+	for(var i=0; i<sex.length; i ++){
+        if(sex[i].checked){
+            flag = true;
+        }
+    }
+	if(flag){
 		return true;
+	}else{
+		alert("你还没有选择性别");
+		return false;
 	}
 }
 </script>
@@ -284,6 +286,7 @@ function checkaddress(){
 	 	address.style.cssText="display:none;";
 	 	a.style.cssText="";
 	 }
+ return true;
 }
 function checkname(){
     var obj = document.getElementById("nameinput");

@@ -88,7 +88,6 @@
 			<br><br>
 			
 			
-			<br><br>
 			<input type="submit" id="submit" value="修改">
 			
 		</form>
