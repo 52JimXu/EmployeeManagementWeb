@@ -30,18 +30,22 @@
 		Object flag = list.get(1);
 		 if("true".equals(flag)){
 		 	if("1".equals(row)){
-			 	out.print("管理员登入成功！"); 
+		 		 response.sendRedirect("../html/adminlogin.html");
 			 %>
 				<%-- <jsp:forword page=""/> --%>
 			<%
 			 }else{
-				out.print("员工登入成功！"); 
+				 response.sendRedirect("../html/emplogin.html");
+				//out.print("员工登入成功！"); 
 			%>
 				<%-- <jsp:forword page=""/> --%>
 			<%
 				}
 		 	}else{
-				out.print("登入失败！"); 
+		 		%>
+		 			<script type="text/javascript">alert("用户名或密码错误");</script>
+		 		<% 
+		 		response.setHeader("refresh","0.1;../login.jsp");
 			%>
 				<%-- <jsp:forword page=""/> --%>
 			<%

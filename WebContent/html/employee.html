@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>人力资源管理系统</title>
+    <style type="text/css">
+        .zy{
+            width: 300px;
+            height: 400px;
+            padding-left: 26%;
+            padding-top: 4%;
+        }
+       a:active{
+           display: block;
+           background-color: black;
+       }
+        a:hover{
+            display: block;
+            color: #fff;
+           }
+        a{
+            padding-top: 4px;
+            padding-left: 34px;
+            height: 30px;
+            color: black;
+            display: block;
+            text-decoration:none;
+           background-color: #DCDCDC;
+        }
+        .xx{
+            overflow: hidden;
+            width: 170px;
+            height: 30px;
+            margin-top: 10px;
+            border-radius: 25px;
+            background-color: chartreuse;
+        }
+        .nav{
+            padding-left: 16%;
+            padding-top: 16%;
+        }
+        .nr{
+            border-radius: 5px;
+            position:fixed;
+            left:37%;
+            top: 65px;
+            width: 387px;
+            height: 532px;
+            background-color:#C8C8C8;
+        }
+        .nr:hover{
+            box-shadow: 0px 0px 8px #fff;
+        }
+        body{
+            background-image: url("../image/bg.jpg");
+            margin: 0px;
+            padding: 0px;
+        }
+     </style>
+</head>
+<body>
+    <div class="nr">
+        <div class="nav"><h1>人力资源管理系统</h1></div>
+        <div class="zy">
+            <div class="xx"><a href="../jsp/getemployee.jsp">查看员工信息</a></div>
+            <div class="xx"><a href="../jsp/updateemployee.jsp">修改员工信息</a></div>
+            <div class="xx" style="text-indent: 15px;"><a href="../jsp/addemployee.jsp">添加员工</a></div>
+            <div class="xx" style="text-indent: 15px;"><a href="../jsp/deleteemployee.jsp">删除员工</a></div>
+            <div class="xx"><a href="adminlogin.html">退出员工管理</a></div>
+
+        </div>
+    </div>
+    <div class="bg"></div>
+</body>
+</html>
