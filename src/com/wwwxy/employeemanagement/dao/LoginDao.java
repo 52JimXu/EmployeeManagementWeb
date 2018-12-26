@@ -36,6 +36,40 @@ public class LoginDao {
 			}
 			return row;
 		}
+		//
+		public List loginone(String username,String password){
+			JDBCUtil jdbc = new JDBCUtil();
+			Connection con = jdbc.getConnection();
+			List list = new ArrayList();
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			String row = "0";
+			list.add(0,row);
+			String flag ="false";
+			list.add(1,flag);
+			String sql ="select * from login where username =? and password = ?";
+			try{
+				ps = con.prepareStatement(sql);
+				ps.setString(1, username);
+				ps.setString(2, password);
+				rs = ps.executeQuery();
+				if(rs.next()){
+					row = rs.getString("admin");
+					flag = "true";
+					list.add(0,row);
+					list.add(1,flag);
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				try {
+					jdbc.close(con, ps, rs);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return list;
+		}
 		//查询Login表中所有信息
 		public List<LoginEntity> getAllLogin(){
 			List<LoginEntity> list = new ArrayList<LoginEntity>();

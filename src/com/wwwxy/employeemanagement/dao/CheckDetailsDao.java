@@ -196,6 +196,29 @@ public class CheckDetailsDao extends JDBCUtil{
 		}
 		return row;
 	}
+	public int updatestatusBYCidone(CheckDetails cd){
+		int row = 0;
+		Connection con = this.getConnection();
+		PreparedStatement ps = null;
+		String sql = "update checkdetails set cstatus=? where cid=?";
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setString(1,cd.getCstatus());
+			ps.setInt(2, cd.getCid());
+			row=ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally{
+			try {
+				this.close(con, ps, null);
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		return row;
+	}
 	//Ç©µ½
 	public int checkin(int empid) {
 		int row = 0;

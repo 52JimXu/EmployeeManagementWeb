@@ -71,7 +71,7 @@
 			<td><%out.print(cd.getCcheckout()); %></td>
 			<td><%out.print(cd.getCstatus()); %></td>
 			<td><%out.print(cd.getCdate()); %></td>
-			<td><a href="doupdatecheckdetails.jsp?id=<%=cd.getCid()%>">删除</a></td>
+			<td><a href="daodeletecheckdetails.jsp?id=<%=cd.getCid()%>">删除</a></td>
 		</tr>
 		<%		
 			i++;	

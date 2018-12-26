@@ -77,7 +77,7 @@
 			}else{
 				out.print(le.getEmpid());
 			} %></td>
-			<td><a href="doupdatelogin.jsp?id=<%=le.getId()%>">删除</a></td>
+			<td><a href="daodeletelogin.jsp?id=<%=le.getId()%>">删除</a></td>
 		</tr>
 		<%		
 			i++;	

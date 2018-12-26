@@ -76,7 +76,7 @@
 	
 	<center>
 	<h1>欢迎来到工资记录修改</h1>
-		<form name="myform">
+		<form name="myform" action="successupdatesalary.jsp?id=<%=id%>" method="post">
 			<label for="inputs">工资编号:</label><input class="disabled" type="text" disabled="disabled" value="<%=sid%>"><span>*不可修改</span><br><br>
 			<label for="inputs">员工编号:</label><input class="disabled" type="text" disabled="disabled" value="<%=empid%>"><span>*不可修改</span><br><br>
 			<label for="inputs">事项编号:</label><input class="disabled" type="text" disabled="disabled" value="<%=eid%>"><span>*不可修改</span><br><br>
