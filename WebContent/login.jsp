@@ -134,7 +134,7 @@
 
 <center>
     <h1>人力资源管理系统</h1>
-    <form  class="form" name="myform" onsubmit="return checkAll()" action="daologin.jsp" method="post">
+    <form  class="form" name="myform" onsubmit="return checkAll()" action="jsp/daologin.jsp" method="post">
     <div id= "inputtwo">
         <div id="user">
             <label >用户名:</label><input type="text" name="username" onblur="checkName()"/>
