@@ -69,7 +69,7 @@
 
 <center>
 	<h1>欢迎来到员工信息新增</h1>
-		<form name="myform" action="doaddemployee.jsp" onsubmit="return checkAll()">
+		<form name="myform" method="post" action="doaddemployee.jsp" onsubmit="return checkAll()">
 			<div id="n">
 			<label for="inputs">员工姓名:</label><input name="empname" onblur="checkname()" id="nameinput" type="text"  value="">
 			<span id ="name"></span>

@@ -77,7 +77,7 @@
 
 <center>
 	<h1>欢迎来到员工登录信息新增</h1>
-		<form name="myform" action="doaddemplogin.jsp" onsubmit="return checkAll()">
+		<form name="myform" method="post" action="doaddemplogin.jsp" onsubmit="return checkAll()">
 			<div id="n">
 			<label for="inputs">用户名:</label><input name="username" onblur="checkname()" id="nameinput" type="text"  value=""><span id ="name"></span>
 			<br><br>

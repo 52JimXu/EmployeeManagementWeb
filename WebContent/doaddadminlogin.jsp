@@ -17,7 +17,7 @@
 		LoginEntity le = new LoginEntity();
 		le.setAdmin(1);le.setEmpid(0);le.setId(0);le.setPassword(password);le.setUsername(username);
 		LoginDao ld = new LoginDao();
-		int row = ld.addLoginAdmin(le);
+		
 		boolean flag=false;
 		List<LoginEntity> list = ld.getAllLogin();
 		for(LoginEntity lists:list){
@@ -29,7 +29,7 @@
 		if(flag){
 			out.print("此管理员已经存在登录信息");
 		}else{
-		
+			int row = ld.addLoginAdmin(le);
 		
 		if(row==1){
 			response.sendRedirect("getlogin.jsp");//	成功
