@@ -58,7 +58,6 @@
 				<td>考勤时间</td>
 			</tr>
 			
-			
 			<% 
 			int i = 0;
 			while(iter.hasNext()){

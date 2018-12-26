@@ -69,7 +69,7 @@
 			<td><%out.print(se.geteId()); %></td>
 			<td><%out.print(se.getsSum()); %></td>
 			<td><%out.print(se.getsTime()); %></td>
-			<td><a href="doupdatesalary.jsp?id=<%=se.getsId()%>">删除</a></td>
+			<td><a href="daodeletesalary.jsp?id=<%=se.getsId()%>">删除</a></td>
 		</tr>
 		<%		
 			i++;	

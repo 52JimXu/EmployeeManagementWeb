@@ -103,9 +103,9 @@
 	%>
 <center>
 	<h1>欢迎来到工资记录修改</h1>
-		<form name="myform" onsubmit="return checkAll()">
-			<div class="empid"><label for="inputs"><span id="disabled">员工编号:</span></label><input class="disabled" type="text" disabled="disabled" value="<%=empid%>"><span class="bkxg">*不可修改</span><br><br></div>
-			<label for="inputs">员工姓名:</label><input  type="text"  value="<%=empname%>"><br><br>
+		<form name="myform" onsubmit="return checkAll()" action="successupdateemployee.jsp?id=<%=id%>" method="post">
+			<div class="empid"><label for="inputs"><span id="disabled">员工编号:</span></label><input class="disabled" type="text" readonly value="<%=empid%>"><span class="bkxg">*不可修改</span><br><br></div>
+			<label for="inputs">员工姓名:</label><input name="name" type="text"  value="<%=empname%>"><br><br>
 			<label for="inputs">员工性别:</label>
 			
 			<input name="sex" type="radio" value="男" <%if(flag){%>checked<% } %>/>男
@@ -114,27 +114,27 @@
 
 
 			<br><br>
-			<div class="empage"><label for="inputs">员工年龄:</label><input id="empage" type="text" disabled value="<%=empage%>"><span class="bkxg">*请通过修改生日修改年龄</span><br><br></div>
+			<div class="empage"><label for="inputs">员工年龄:</label><input name="age" id="empage" type="text" readonly value="<%=empage%>"><span class="bkxg">*请通过修改生日修改年龄</span><br><br></div>
 			<label for="inputs">员工生日:</label>
-			<select name="year" id="year" onchange="getday()" >
+			<select name="year"  id="year" onchange="getday()" >
         		<option value="1990">1990</option>
     		</select>年
-    		<select name="month"  onchange="getday()" >
+    		<select name="month"   onchange="getday()" >
        			<option value="1">1</option>
 		    </select>月
-		    <select name="day">
+		    <select name="day" >
 		        <option>1</option>
 		    </select>日
 			
 			
 			<br><br>
-			<label for="inputs">员工工资:</label><input  type="text"  value="<%=empbasic%>"><br><br>
+			<label for="inputs">员工工资:</label><input name="basic" type="text"  value="<%=empbasic%>"><br><br>
 			<div id="big">
-			<label for="inputs">员工邮箱:</label><input  type="text" onblur="isEmail(this.value)" id="emailinput"  value="<%=empemail%>">
+			<label for="inputs">员工邮箱:</label><input name="email" type="text" onblur="isEmail(this.value)" id="emailinput"  value="<%=empemail%>">
 			<span id ="email"></span>
 			</div>
 			<br>
-			<label for="inputs">员工地址:</label><input  type="text"  value="<%=empaddress%>"><br><br>
+			<label for="inputs">员工地址:</label><input name="address" type="text"  value="<%=empaddress%>"><br><br>
 			
 			
 			

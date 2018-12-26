@@ -82,11 +82,11 @@
 	
 	<center>
 	<h1>欢迎来到考勤记录修改</h1>
-		<form name="myform">
-			<label for="inputs">考勤编号:</label><input class="disabled" type="text" disabled="disabled" value="<%=cid%>"><span>*不可修改</span><br><br>
-			<label for="inputs">员工编号:</label><input class="disabled" type="text" disabled="disabled" value="<%=empid%>"><span>*不可修改</span><br><br>
-			<label for="inputs">上班打卡:</label><input class="disabled" type="text" disabled="disabled" value="<%=checkin%>"><span>*不可修改</span><br><br>
-			<label for="inputs">下班打卡:</label><input class="disabled" type="text" disabled="disabled" value="<%=checkout%>"><span>*不可修改</span><br><br>
+		<form name="myform" action="successupdatecheckdetails.jsp?id=<%=id%>" method="post">
+			<label for="inputs">考勤编号:</label><input name="cid" class="disabled" type="text" readonly value="<%=cid%>"><span>*不可修改</span><br><br>
+			<label for="inputs">员工编号:</label><input name="empid" class="disabled" type="text" readonly value="<%=empid%>"><span>*不可修改</span><br><br>
+			<label for="inputs">上班打卡:</label><input name="checkin" class="disabled" type="text" readonly value="<%=checkin%>"><span>*不可修改</span><br><br>
+			<label for="inputs">下班打卡:</label><input name="checkout" class="disabled" type="text" readonly value="<%=checkout%>"><span>*不可修改</span><br><br>
 			<div id="status"><label for="inputs">考勤状态:</label>
 			<select name="status" >
         		<option value="正常" <%if("正常".equals(cstatus)){%>selected ="selected"<% }%>>正常</option>
@@ -97,7 +97,6 @@
         		<option value="迟到,加班" <%if("迟到,加班".equals(cstatus)){%>selected ="selected"<% }%>>迟到,加班</option>
         		<option value="迟到,早退" <%if("迟到,早退".equals(cstatus)){%>selected ="selected"<% }%>>迟到,早退</option>
     		</select>
-
 			</div><br>
 			
 			

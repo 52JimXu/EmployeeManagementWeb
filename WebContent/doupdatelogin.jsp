@@ -73,10 +73,10 @@
 	
 	<center>
 	<h1>欢迎来到登录信息修改</h1>
-		<form name="myform">
+		<form name="myform" action="successupdatelogin.jsp?id=<%=id%>" method="post">
 			<label for="inputs">登录编号:</label><input class="disabled" type="text" disabled="disabled" value="<%=id%>"><span>*不可修改</span><br><br>
 			<label for="inputs">员工编号:</label><input class="disabled" type="text" disabled="disabled" value="<%=empid%>"><span>*不可修改</span><br><br>
-			<div class="username"><label for="inputs">用户名:</label><input type="text" value="<%=username%>"></div><br>
+			<div class="username"><label for="inputs">用户名:</label><input name="username" type="text" value="<%=username%>"></div><br>
 			<label for="inputs">是否管理员</label>
 			
 			<input name="admin" type="radio" disabled value="是" <%if(flag){%>checked<% } %>/>是

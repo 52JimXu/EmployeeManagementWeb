@@ -75,7 +75,7 @@
 			<td><%out.print(ee.getEmpBasic()); %></td>
 			<td><%out.print(ee.getEmpEmail()); %></td>
 			<td><%out.print(ee.getEmpAddress()); %></td>
-			<td><a href="doupdateemployee.jsp?id=<%=ee.getEmpId() %>">删除</a></td>
+			<td><a href="daodeleteemployee.jsp?id=<%=ee.getEmpId() %>">删除</a></td>
 		</tr>
 		<%		
 			i++;	

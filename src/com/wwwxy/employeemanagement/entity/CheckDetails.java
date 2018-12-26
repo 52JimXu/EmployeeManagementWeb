@@ -21,6 +21,11 @@ public CheckDetails(int cid, int empid, String ccheckin,
 	this.cstatus = cstatus;
 	this.cdate = cdate;
 }
+public CheckDetails(int cid,String cstatus) {
+	super();
+	this.cid = cid;
+	this.cstatus = cstatus;
+}
 public int getCid() {
 	return cid;
 }

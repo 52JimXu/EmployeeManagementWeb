@@ -85,7 +85,6 @@ public class SalaryDao {
 		try{
 			con = new JDBCUtil().getConnection();
 			ps = con.prepareStatement(sql);
-			
 			row = ps.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -150,6 +149,31 @@ public class SalaryDao {
 		}
 		return row;
 	}
+	//根据id该日期
+		public int updatedateone(int sid , String sTime){
+			String sql = "update salary set stime=? where sid =?";
+			Connection con = null;
+			PreparedStatement ps = null;
+			int row=0;
+			try{
+				con = new JDBCUtil().getConnection();
+				ps = con.prepareStatement(sql);
+				
+				ps.setString(1,sTime);
+				ps.setInt(2,sid);
+				
+				row = ps.executeUpdate();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}finally{
+				try {
+					new JDBCUtil().close(con, ps, null);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return row;
+		}
 	//通过员工id更新工资总和
 	public int UpdateSalaryByEmpId(int empid,float ssum) {
 		String sql = "update salary set ssum=? where empid =?";
