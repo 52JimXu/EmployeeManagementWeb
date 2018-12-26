@@ -283,6 +283,9 @@ public class EmployeeDao extends JDBCUtil{
 		Connection con = getConnection();
 		PreparedStatement ps = null;
 		String sql = "delete from employee where empid=?";
+		LoginEntity le = new LoginDao().getLoginById4(EmpId);
+		int id = le.getId();
+		new LoginDao().delLoginById3(id);
 		new EventDao().DropEventEntityByempid(EmpId);
 		try {
 			ps = con.prepareStatement(sql);
@@ -300,9 +303,7 @@ public class EmployeeDao extends JDBCUtil{
 				e.printStackTrace();
 			}
 		}
-		LoginEntity le = new LoginDao().getLoginById4(EmpId);
-		int id = le.getId();
-		new LoginDao().delLoginById3(id);
+		
 		return row;
 	}
 

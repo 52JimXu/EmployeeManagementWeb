@@ -1,3 +1,4 @@
+<%@page import="com.wwwxy.employeemanagement.dao.EventDao"%>
 <%@page import="com.wwwxy.employeemanagement.dao.EmployeeDao"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
