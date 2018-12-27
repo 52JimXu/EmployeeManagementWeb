@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -58,23 +59,15 @@
 <body>
 	<%
 		String name = null;
-		List<EmployeeEntity> list=null;
-		Iterator iter = null;
-		try{
-		 	name = request.getParameter("inquire");  
-		}catch(NumberFormatException e){
-			name=null;
-		}
-			EmployeeDao ed = new EmployeeDao();
-		
-			EmployeeEntity ee1 = new EmployeeEntity();
-		if(name !=null){
-			List<EmployeeEntity> list1= ed.getEmployeeByName(name);
-			iter = list1.iterator();
+		List<EmployeeEntity> list = null;
+		EmployeeDao ed = new EmployeeDao();
+		if(request.getParameter("inquire")!=null){
+			name = request.getParameter("inquire");
+			list = ed.getEmployeeByName(name);
 		}else{
-			list =ed.getAllEmployee();
-			iter = list.iterator();
+			list = ed.getAllEmployee();
 		}
+		pageContext.setAttribute("list", list);
 	%>
 		
 	<center>
@@ -98,27 +91,24 @@
 				<td>员工邮箱</td>
 				<td>员工地址</td>
 			</tr>
-			
-			
-			<% 
-			int i = 0;
-			while(iter.hasNext()){
-				EmployeeEntity ee = (EmployeeEntity)iter.next();
-		%>		
-		<tr <%if(i%2==0){ %>bgcolor="darkgray" <% }%>>
-			<td><%out.print(ee.getEmpId()); %></td>
-			<td><%out.print(ee.getEmpName()); %></td>
-			<td><%out.print(ee.getEmpSex()); %></td>
-			<td><%out.print(ee.getEmpAge()); %></td>
-			<td><%out.print(ee.getEmpBirthday()); %></td>
-			<td><%out.print(ee.getEmpBasic()); %></td>
-			<td><%out.print(ee.getEmpEmail()); %></td>
-			<td><%out.print(ee.getEmpAddress()); %></td>
-		</tr>
-		<%		
-			i++;	
-			}
-		%>
+			<c:forEach items="${list }" var="str" varStatus="st">
+				<c:choose>
+					<c:when test="${st.index%2==0 }">
+						<tr bgcolor="darkgray">
+					</c:when>
+					<c:otherwise>
+						<tr>
+					</c:otherwise>
+				</c:choose>
+				<td>${str.empId}</td>
+				<td>${str.empName }</td>
+				<td>${str.empSex }</td>
+				<td>${str.empAge }</td>
+				<td>${str.empBirthday}</td>
+				<td>${str.empBasic}</td>
+				<td>${str.empEmail}</td>
+				<td>${str.empAddress}</td>
+			</c:forEach>
 		</table>
 		</center>
 </body>

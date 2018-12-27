@@ -4,6 +4,7 @@
 <%@page import="com.wwwxy.employeemanagement.dao.SalaryDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,24 +79,17 @@
 </head>
 <body>
 	<%
-	int id =0;
-	List<SalaryEntity> list=null;
-	Iterator iter = null;
-	try{
-	 id = Integer.parseInt(request.getParameter("inquire"));  
-	}catch(NumberFormatException e){
-		id = 0;
-	}
-	SalaryDao sd = new SalaryDao();
-	
-	SalaryEntity se1 = new SalaryEntity();
-	if(id !=0){
-	List<SalaryEntity> list1= sd.GetSalaryByEmpId(id);
-	iter = list1.iterator();
-	}else{
-	list =sd.GetAllSalary();
-	iter = list.iterator();
-	}
+		int id =0;
+		List<SalaryEntity> list = null;
+		SalaryDao sd = new SalaryDao();
+		SalaryEntity se = new SalaryEntity();
+		if(request.getParameter("inquire")!=null){
+			id = Integer.parseInt(request.getParameter("inquire")); 
+			list = sd.GetSalaryByEmpId(id);
+		}else{
+			list = sd.GetAllSalary();
+		}
+		pageContext.setAttribute("list", list);
 	%>
 		
 	<center>
@@ -116,25 +110,24 @@
 				<td>工资总和</td>
 				<td>发工资时间</td>
 			</tr>
+			<c:forEach items="${list}" var="str" varStatus="st">
+			<c:choose>
+				<c:when test="${st.index%2==0 }">
+					<tr bgcolor="darkgray">
+				</c:when>
+				<c:otherwise>
+					<tr>
+				</c:otherwise>
+			</c:choose>
 			
-			
-			<% 
-			int i = 0;
-			while(iter.hasNext()){
-				SalaryEntity se = (SalaryEntity)iter.next();
-		%>		
-		<tr <%if(i%2==0){ %>bgcolor="darkgray" <% }%>>
-			<td><%out.print(se.getsId()); %></td>
-			<td><%out.print(se.getEmpId()); %></td>
-			<td><%out.print(se.geteId()); %></td>
-			<td><%out.print(se.getsSum()); %></td>
-			<td><%out.print(se.getsTime()); %></td>
-			<td><a href="daodeletesalary.jsp?id=<%=se.getsId()%>" class="anniu">删除</a></td>
-		</tr>
-		<%		
-			i++;	
-			}
-		%>
+			<td> ${str.sId } </td>
+			<td> ${str.empId } </td>
+			<td> ${str.eId } </td>
+			<td> ${str.sSum } </td>
+			<td> ${str.sTime } </td>
+			<td><a href="daodeletesalary.jsp?id=${str.sId }" class="anniu">删除</a></td>
+			</tr>
+			</c:forEach>
 		</table>
 		</center>
 </body>

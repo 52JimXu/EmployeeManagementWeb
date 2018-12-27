@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+      <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,23 +79,15 @@
 <body>
 	<%
 		int id = 0;
-		List<EventEntity> list=null;
-		Iterator iter = null;
-		try{
-		 id = Integer.parseInt(request.getParameter("inquire"));  
-		}catch(NumberFormatException e){
-			id = 0;
-		}
+		List<EventEntity> list = null;
 		EventDao ed = new EventDao();
-		
-		EventDao ed1 = new EventDao();
-		if(id !=0){
-		List<EventEntity> list1= ed.getEventById(id);
-		iter = list1.iterator();
+		if(request.getParameter("inquire")!=null){
+			id = Integer.parseInt(request.getParameter("inquire"));
+			list = ed.getEventById(id);
 		}else{
-		list =ed.getAllEvent();
-		iter = list.iterator();
+			list = ed.getAllEvent();
 		}
+		pageContext.setAttribute("list", list);
 	%>
 		
 	<center>
@@ -117,25 +110,25 @@
 				<td>事项奖惩</td>
 			</tr>
 			
+		<c:forEach items="${list }" var="str" varStatus="st">
+				<c:choose>
+					<c:when test="${st.index%2==0 }">
+						<tr bgcolor="darkgray">
+					</c:when>
+					<c:otherwise>
+						<tr>
+					</c:otherwise>
+				</c:choose>
 			
-			<% 
-			int i = 0;
-			while(iter.hasNext()){
-				EventEntity ee = (EventEntity)iter.next();
-		%>		
-		<tr <%if(i%2==0){ %>bgcolor="darkgray" <% }%>>
-			<td><%out.print(ee.geteId()); %></td>
-			<td><%out.print(ee.geteMpid()); %></td>
-			<td><%out.print(ee.geteClocking()); %></td>
-			<td><%out.print(ee.geteOvertime()); %></td>
-			<td><%out.print(ee.geteBigevent()); %></td>
-			<td><%out.print(ee.geteAward()); %></td>
-			<td><a href="daodeleteevent.jsp?id=<%=ee.geteMpid()%>" class="anniu">删除</a></td>
-		</tr>
-		<%		
-			i++;	
-			}
-		%>
+				<td>${str.eId}</td>									 
+				<td>${str.eMpid}</td>
+				<td>${str.eClocking}</td>
+				<td>${str.eOvertime}</td>
+				<td>${str.eBigevent}</td>
+				<td>${str.eAward}</td>
+				<td><a href="daodeleteevent.jsp?id=${str.eMpid}" class="anniu">删除</a></td>
+				</tr>
+			</c:forEach>
 		</table>
 		</center>
 </body>
