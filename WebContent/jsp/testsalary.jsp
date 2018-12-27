@@ -61,7 +61,6 @@
 		int id =0;
 		List<SalaryEntity> list=null;
 		SalaryDao sd = new SalaryDao();
-		SalaryEntity se1 = new SalaryEntity();
 		try{
 			id = Integer.parseInt(request.getParameter("inquire"));  
 			list= sd.GetSalaryByEmpId(id);
@@ -76,7 +75,7 @@
 		<h1>欢迎来到工资记录查询</h1>
 		<div id= "head">
 			<a href="../html/salary.html">返回管理系统</a>
-			<form id="form" action="getsalary.jsp" method="get">
+			<form id="form" action="testsalary.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工编号" id="inquire"/>
 				<input type="submit" value="查询" id="submit"/>
 			</form>

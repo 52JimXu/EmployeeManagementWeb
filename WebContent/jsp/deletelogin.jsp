@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -77,23 +78,15 @@
 <body>
 	<%
 		String name = null;
-		List<LoginEntity> list=null;
-		Iterator iter = null;
-	try{
-	 	name = request.getParameter("inquire");  
-	}catch(NumberFormatException e){
-		name=null;
-	}
-		LoginDao ld = new LoginDao();
-	
-		LoginEntity le1 = new LoginEntity();
-	if(name !=null){
-		List<LoginEntity> list1= ld.getLoginByUsername(name);
-		iter = list1.iterator();
-	}else{
-		list =ld.getAllLogin();
-		iter = list.iterator();
-	}
+		List<LoginEntity> list = null;
+		LoginDao  ld = new LoginDao();
+		if(request.getParameter("inquire")!=null){
+			name = request.getParameter("inquire");
+			list = ld.getLoginByUsername(name);
+		}else{
+			list = ld.getAllLogin();
+		}
+		pageContext.setAttribute("list", list);
 	%>
 		
 	<center>
@@ -115,31 +108,43 @@
 			</tr>
 			
 			
-			<% 
-			int i = 0;
-			while(iter.hasNext()){
-				LoginEntity le = (LoginEntity)iter.next();
-		%>		
-		<tr <%if(i%2==0){ %>bgcolor="darkgray" <% }%>>
-			<td><%out.print(le.getId()); %></td>
-			<td><%out.print(le.getUsername()); %></td>
-			<td><strong>······</strong></td>
-			<td><%if(le.getAdmin()==0){
-				out.print("否");
-			}else{
-				out.print("是");
-			} %></td>
-			<td><%if(le.getEmpid()==0){
-				out.print("无");
-			}else{
-				out.print(le.getEmpid());
-			} %></td>
-			<td><a href="daodeletelogin.jsp?id=<%=le.getId()%>" class="anniu">删除</a></td>
-		</tr>
-		<%		
-			i++;	
-			}
-		%>
+			<c:forEach items="${list}" var="str" varStatus="st">
+				<c:choose>
+					<c:when test="${st.index%2==0 }">
+						<tr bgcolor="darkgray">
+					</c:when>
+					<c:otherwise>
+						<tr>
+					</c:otherwise>
+				</c:choose>
+				
+					<td>${str.id }</td>
+					<td>${str.username}</td>
+					<td><strong>......</strong></td>
+				<td>
+					<c:choose>
+						<c:when  test="${str.admin==0 }">
+							否
+						</c:when>
+						<c:otherwise>
+							是
+						</c:otherwise>
+					</c:choose>
+				
+				</td>
+				<td>
+					<c:choose>
+						<c:when  test="${str.empid==0 }">
+							无
+						</c:when>
+						<c:otherwise>
+							${str.empid}
+						</c:otherwise>
+					</c:choose>
+				</td>
+				<td><a href="daodeletelogin.jsp?id=${str.id}" class="anniu">删除</a></td>
+				</tr>
+			</c:forEach>
 		</table>
 		</center>
 </body>

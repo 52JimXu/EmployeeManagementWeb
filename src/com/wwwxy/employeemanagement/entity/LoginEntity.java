@@ -25,6 +25,16 @@ public class LoginEntity {
 		this.admin = admin;
 	}
 	
+	public LoginEntity(int id, String username, String password,
+		int empid, int admin) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.empid = empid;
+		this.admin = admin;
+	}
+	
 	public LoginEntity(String username, String password) {
 		super();
 		this.username = username;

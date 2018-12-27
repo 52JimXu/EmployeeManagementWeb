@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,24 +79,15 @@
 	<%
 	int id =0;
 	List<CheckDetails> list=null;
-	Iterator iter = null;
-	try{
-	 	id = Integer.parseInt(request.getParameter("inquire"));  
-	}catch(NumberFormatException e){
-		id = 0;
-	}
-		CheckDetailsDao cdd = new CheckDetailsDao();
-	
-		CheckDetails cd1 = new CheckDetails();
-	if(id !=0){
-		List<CheckDetails> list1= cdd.getCheckDetailsByempid(id);
-		iter = list1.iterator();
+	CheckDetailsDao cdd = new CheckDetailsDao();
+	if(request.getParameter("inquire")!=null){
+		id = Integer.parseInt(request.getParameter("inquire")); 
+		list= cdd.getCheckDetailsByempid(id);
 	}else{
 		list =cdd.getAllCheckDetails();
-		iter = list.iterator();
 	}
+	pageContext.setAttribute("list", list);
 	%>
-		
 	<center>
 		<h1>欢迎来到考勤记录删除</h1>
 	
@@ -115,26 +107,24 @@
 				<td>考勤状态</td>
 				<td>考勤时间</td>
 			</tr>
-			
-			
-			<% 
-			int i = 0;
-			while(iter.hasNext()){
-				CheckDetails cd = (CheckDetails)iter.next();
-		%>		
-		<tr <%if(i%2==0){ %>bgcolor="darkgray" <% }%>>
-			<td><%out.print(cd.getCid()); %></td>
-			<td><%out.print(cd.getEmpid()); %></td>
-			<td><%out.print(cd.getCcheckin()); %></td>
-			<td><%out.print(cd.getCcheckout()); %></td>
-			<td><%out.print(cd.getCstatus()); %></td>
-			<td><%out.print(cd.getCdate()); %></td>
-			<td><a href="daodeletecheckdetails.jsp?id=<%=cd.getCid()%>" class="anniu">删除</a></td>
-		</tr>
-		<%		
-			i++;	
-			}
-		%>
+			<c:forEach items="${list }" var="str" varStatus="st">
+				<c:choose>
+					<c:when test="${st.index%2==0 }">
+						<tr bgcolor="darkgray">
+					</c:when>
+					<c:otherwise>
+						<tr>
+					</c:otherwise>
+				</c:choose>
+				<td>${str.cid}</td>
+				<td>${str.empid }</td>
+				<td>${str.ccheckin }</td>
+				<td>${str.ccheckout }</td>
+				<td>${str.cstatus }</td>
+				<td>${str.cdate }</td>
+				<td><a href="daodeletecheckdetails.jsp?id=${str.cid}" class="anniu">删除</a></td>
+				</tr>
+			</c:forEach>
 		</table>
 		</center>
 </body>
