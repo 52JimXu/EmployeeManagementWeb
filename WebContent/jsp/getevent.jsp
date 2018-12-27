@@ -15,19 +15,78 @@
 		width:120px;
 		font-size:20px;
 	}
+	#head{
+		padding:1% 0 2% 0;
+		width:745.6px;
+	}
+	 form{
+		width:220px;
+		margin-left:200px;
+		display:inline-block;
+	}
+	a{
+	    height: 25px;
+	    color: black;
+	    text-decoration: none;
+	    background-color: #DCDCDC;
+	    font-size:16px;
+	    border-radius:5px;
+	    display:inline-block;
+	    margin-right:200px;
+	}
+	input{
+        border: 1px solid #ccc; 
+        padding: 7px 0px;
+        border-radius: 3px; /*css3属性IE不支持*/
+       /*  padding-left:5px;  */
+        padding:0;
+    }
+    #inquire{
+    	width:160px;
+    	height:25px;
+    }
+    #submit{
+    	width:45px;
+    	height:30px;
+		font-size:15px;
+	}
+	#submit:hover{
+		cursor:pointer;
+	}
 </style>
 </head>
 <body>
 	<%
+		int id = 0;
+		List<EventEntity> list=null;
+		Iterator iter = null;
+		try{
+		 id = Integer.parseInt(request.getParameter("inquire"));  
+		}catch(NumberFormatException e){
+			id = 0;
+		}
 		EventDao ed = new EventDao();
-		List<EventEntity> list = ed.getAllEvent();
-		Iterator iter = list.iterator();
+		
+		EventDao ed1 = new EventDao();
+		if(id !=0){
+		List<EventEntity> list1= ed.getEventById(id);
+		iter = list1.iterator();
+		}else{
+		list =ed.getAllEvent();
+		iter = list.iterator();
+		}
 	%>
 		
 	<center>
 		<h1>欢迎来到事项记录查询</h1>
 	
-	
+		<div id= "head">
+			<a href="../html/event.html">返回管理系统</a>
+			<form id="form" action="getevent.jsp" method="get">
+				<input type="text" name="inquire" placeholder="请输入查询员工编号" id="inquire"/>
+				<input type="submit" value="查询" id="submit"/>
+			</form>
+		</div>
 		<table>
 			<tr>
 				<td>事项编号</td>

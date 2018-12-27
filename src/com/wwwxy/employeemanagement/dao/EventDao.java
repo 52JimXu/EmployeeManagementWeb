@@ -212,6 +212,31 @@ public class EventDao extends JDBCUtil {
 		
 	}
 	
+	public int DropEventEntityByempidone(int empid){
+		int row=0;
+		PreparedStatement ps = null;
+		Connection con = this.getConnection();
+		String sql = "delete from event where empid = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, empid);
+			row=ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				ps.close();
+				con.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		new SalaryDao().deleteByempid(empid);
+		return row;
+		
+	}
 	
 	//输入eid查询事项
 	public List<EventEntity> getAllEventEntity(int eid){

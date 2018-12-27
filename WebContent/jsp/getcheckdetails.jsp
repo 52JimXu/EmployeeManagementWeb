@@ -15,19 +15,78 @@
 		width:120px;
 		font-size:20px;
 	}
+	#head{
+		padding:1% 0 2% 0;
+		width:621.6px;
+	}
+	 form{
+		width:220px;
+		margin-left:150px;
+		display:inline-block;
+	}
+	a{
+	    height: 25px;
+	    color: black;
+	    text-decoration: none;
+	    background-color: #DCDCDC;
+	    font-size:16px;
+	    border-radius:5px;
+	    display:inline-block;
+	    margin-right:140px;
+	}
+	input{
+        border: 1px solid #ccc; 
+        padding: 7px 0px;
+        border-radius: 3px; /*css3属性IE不支持*/
+       /*  padding-left:5px;  */
+        padding:0;
+    }
+    #inquire{
+    	width:160px;
+    	height:25px;
+    }
+    #submit{
+    	width:45px;
+    	height:30px;
+		font-size:15px;
+	}
+	#submit:hover{
+		cursor:pointer;
+	}
 </style>
 </head>
 <body>
 	<%
+	int id =0;
+	List<CheckDetails> list=null;
+	Iterator iter = null;
+	try{
+	 	id = Integer.parseInt(request.getParameter("inquire"));  
+	}catch(NumberFormatException e){
+		id = 0;
+	}
 		CheckDetailsDao cdd = new CheckDetailsDao();
-		List<CheckDetails> list = cdd.getAllCheckDetails();
-		Iterator iter = list.iterator();
+	
+		CheckDetails cd1 = new CheckDetails();
+	if(id !=0){
+		List<CheckDetails> list1= cdd.getCheckDetailsByempid(id);
+		iter = list1.iterator();
+	}else{
+		list =cdd.getAllCheckDetails();
+		iter = list.iterator();
+	}
 	%>
 		
 	<center>
 		<h1>欢迎来到考勤记录查询</h1>
 	
-	
+		<div id= "head">
+			<a href="../html/checkdetail.html">返回管理系统</a>
+			<form id="form" action="getcheckdetails.jsp" method="get">
+				<input type="text" name="inquire" placeholder="请输入查询员工编号" id="inquire"/>
+				<input type="submit" value="查询" id="submit"/>
+			</form>
+		</div>
 		<table>
 			<tr>
 				<td>考勤编号</td>
