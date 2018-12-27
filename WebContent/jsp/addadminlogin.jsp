@@ -67,7 +67,6 @@
 <body onload="getTime()">
 
 			<%
-				
 				EmployeeDao ed = new EmployeeDao();
 				EmployeeEntity ee=new EmployeeEntity();
 				int[] empid = new int[ed.GetMaxId()];

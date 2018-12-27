@@ -44,43 +44,23 @@
 
 </head>
 <body onload="getTime()">
-	<%! 
-		int sid;
-		int empid;
-		int eid;
-		float ssum;
-		String stime;
-	%>
 	<%
 		SalaryEntity se = new SalaryEntity();
 		int id = Integer.parseInt(request.getParameter("id"));
 		SalaryDao sd = new SalaryDao();
 		List<SalaryEntity> list = sd.GetSalaryById(id);
-		for(SalaryEntity lists:list){
-			sid = lists.getsId();
-			empid = lists.getEmpId();
-			eid = lists.geteId();
-			ssum = lists.getsSum();
-			stime = lists.getsTime();
-		}
-		String year;
-		String month;
-		String day;
-		
-		String[] strs = stime.split("-");
-		year =strs[0];
-		month = strs[1];
-		day = strs[2];
+		pageContext.setAttribute("list", list);
+		pageContext.setAttribute("id", id);
 	%>
 	
 	
 	<center>
 	<h1>欢迎来到工资记录修改</h1>
-		<form name="myform" action="successupdatesalary.jsp?id=<%=id%>" method="post">
-			<label for="inputs">工资编号:</label><input class="disabled" type="text" disabled="disabled" value="<%=sid%>"><span>*不可修改</span><br><br>
-			<label for="inputs">员工编号:</label><input class="disabled" type="text" disabled="disabled" value="<%=empid%>"><span>*不可修改</span><br><br>
-			<label for="inputs">事项编号:</label><input class="disabled" type="text" disabled="disabled" value="<%=eid%>"><span>*不可修改</span><br><br>
-			<label for="inputs">工资总和:</label><input class="disabled" type="text" disabled="disabled" value="<%=ssum%>"><span>*不可修改</span><br><br>
+		<form name="myform" action="successupdatesalary.jsp?id=${id }" method="post">
+			<label for="inputs">工资编号:</label><input class="disabled" type="text" disabled="disabled" value="${list[0].sId }"><span>*不可修改</span><br><br>
+			<label for="inputs">员工编号:</label><input class="disabled" type="text" disabled="disabled" value="${list[0].empId }"><span>*不可修改</span><br><br>
+			<label for="inputs">事项编号:</label><input class="disabled" type="text" disabled="disabled" value="${list[0].eId }"><span>*不可修改</span><br><br>
+			<label for="inputs">工资总和:</label><input class="disabled" type="text" disabled="disabled" value="${list[0].sSum }"><span>*不可修改</span><br><br>
 			<label for="inputs">发工资时间:</label>
 			<select name="year"  onchange="getday()" >
         		<option value="1990">1990</option>
@@ -100,6 +80,14 @@
 	</center>
 	<script language="JavaScript">
 		function getTime(){
+			
+			var otime = '${list[0].sTime}';
+			var oyear = "",omonth = "", oday = "";
+			var oyear = otime.substr(0,4);
+			var omonth = otime.substr(5,2);
+			var oday = otime.substr(8,2);
+			
+			
 		    var year = document.myform.year;
 		    var start =2019;
 		    var end =2019;
@@ -113,25 +101,25 @@
 		    var end2 =31;
 		    var Day;
 		    var daynum;
-		    if(<%=year%>%4==0&&<%=year%>%100 != 0||<%=year%>%400 == 0){
-		    	if(<%=month%>==1||<%=month%>==3||<%=month%>==5||<%=month%>==7||<%=month%>==8||<%=month%>==10||<%=month%>==12){
+		    if(oyear%4==0&&oyear%100 != 0||oyear%400 == 0){
+		    	if(omonth==1||omonth==3||omonth==5||omonth==7||omonth==8||omonth==10||omonth==12){
 		    		daynum=31;
-		    	}else if(<%=month%>==4||<%=month%>==6||<%=month%>==9||<%=month%>==11){
+		    	}else if(omonth==4||omonth==6||omonth==9||omonth==11){
 		    		daynum=30;
 		    	}else{
 		    		daynum=29;
 		    	}
 		    }else{
-		    	if(<%=month%>==1||<%=month%>==3||<%=month%>==5||<%=month%>==7||<%=month%>==8||<%=month%>==10||<%=month%>==12){
+		    	if(omonth==1||omonth==3||omonth==5||omonth==7||omonth==8||omonth==10||omonth==12){
 		    		daynum=31;
-		    	}else if(<%=month%>==4||<%=month%>==6||<%=month%>==9||<%=month%>==11){
+		    	}else if(omonth==4||omonth==6||omonth==9||omonth==11){
 		    		daynum=30;
 		    	}else{
 		    		daynum=28;
 		    	}
 		    }
 		    for(var i=start;i<=end;i++){
-		    	if(i==<%=year%>){
+		    	if(i==oyear){
 		    		html+="<option selected value="+i+">"+i+"</option>";
 		    	}else{
 		    		html+="<option value="+i+">"+i+"</option>";
@@ -139,7 +127,7 @@
 		    }
 		    year.innerHTML = html;
 		    for(var m=start1;m<=end1;m++){
-		        if(m==<%=month%>){
+		        if(m==omonth){
 		        	Month+="<option selected value="+m+">"+m+"</option>";
 		        }else{
 		        	Month+="<option value="+m+">"+m+"</option>";
@@ -148,7 +136,7 @@
 		    month.innerHTML = Month;
 		    
 		    for(var i=1;i<=daynum;i++){
-		    	if(i==<%=day%>){
+		    	if(i==oday){
 		        	Day += "<option selected value="+i+">"+i+"</option>";
 		    	}else{
 		    		Day += "<option value="+i+">"+i+"</option>";
