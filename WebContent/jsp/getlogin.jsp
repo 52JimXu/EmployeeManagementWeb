@@ -15,19 +15,79 @@
 		width:120px;
 		font-size:20px;
 	}
+	
+	
+	#head{
+		padding:1% 0 2% 0;
+		width:621.6px;
+	}
+	 form{
+		width:220px;
+		margin-left:150px;
+		display:inline-block;
+	}
+	a{
+	    height: 25px;
+	    color: black;
+	    text-decoration: none;
+	    background-color: #DCDCDC;
+	    font-size:16px;
+	    border-radius:5px;
+	    display:inline-block;
+	    margin-right:140px;
+	}
+	input{
+        border: 1px solid #ccc; 
+        padding: 7px 0px;
+        border-radius: 3px; /*css3属性IE不支持*/
+       /*  padding-left:5px;  */
+        padding:0;
+    }
+    #inquire{
+    	width:160px;
+    	height:25px;
+    }
+    #submit{
+    	width:45px;
+    	height:30px;
+		font-size:15px;
+	}
+	#submit:hover{
+		cursor:pointer;
+	}
 </style>
 </head>
 <body>
 	<%
+		String name = null;
+		List<LoginEntity> list=null;
+		Iterator iter = null;
+	try{
+	 	name = request.getParameter("inquire");  
+	}catch(NumberFormatException e){
+		name=null;
+	}
 		LoginDao ld = new LoginDao();
-		List<LoginEntity> list = ld.getAllLogin();
-		Iterator iter = list.iterator();
+	
+		LoginEntity le1 = new LoginEntity();
+	if(name !=null){
+		List<LoginEntity> list1= ld.getLoginByUsername(name);
+		iter = list1.iterator();
+	}else{
+		list =ld.getAllLogin();
+		iter = list.iterator();
+	}
 	%>
 		
 	<center>
 		<h1>欢迎来到登录信息查询</h1>
-	
-	
+		<div id= "head">
+			<a href="../html/login.html">返回管理系统</a>
+			<form id="form" action="getlogin.jsp" method="get">
+				<input type="text" name="inquire" placeholder="请输入查询员工姓名" id="inquire"/>
+				<input type="submit" value="查询" id="submit"/>
+			</form>
+		</div>
 		<table>
 			<tr>
 				<td>登录编号</td>

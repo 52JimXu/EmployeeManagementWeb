@@ -1,14 +1,14 @@
-<%@page import="com.wwwxy.employeemanagement.entity.EmployeeEntity"%>
-<%@page import="com.wwwxy.employeemanagement.dao.EmployeeDao"%>
+<%@page import="com.wwwxy.employeemanagement.entity.EventEntity"%>
+<%@page import="com.wwwxy.employeemanagement.dao.EventDao"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>员工信息删除</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>事项记录删除</title>
 <style type= "text/css">
 	td{
 		text-align:center;
@@ -34,7 +34,7 @@
 		font-size: 20px;
 		color: blue;
 		text-decoration: underline;
-	}
+		}
 	#head{
 		padding:1% 0 2% 0;
 		width:745.6px;
@@ -77,64 +77,60 @@
 </head>
 <body>
 	<%
-		String name = null;
-		List<EmployeeEntity> list=null;
+		int id = 0;
+		List<EventEntity> list=null;
 		Iterator iter = null;
 		try{
-		 	name = request.getParameter("inquire");  
+		 id = Integer.parseInt(request.getParameter("inquire"));  
 		}catch(NumberFormatException e){
-			name=null;
+			id = 0;
 		}
-			EmployeeDao ed = new EmployeeDao();
+		EventDao ed = new EventDao();
 		
-			EmployeeEntity ee1 = new EmployeeEntity();
-		if(name !=null){
-			List<EmployeeEntity> list1= ed.getEmployeeByName(name);
-			iter = list1.iterator();
+		EventDao ed1 = new EventDao();
+		if(id !=0){
+		List<EventEntity> list1= ed.getEventById(id);
+		iter = list1.iterator();
 		}else{
-			list =ed.getAllEmployee();
-			iter = list.iterator();
+		list =ed.getAllEvent();
+		iter = list.iterator();
 		}
 	%>
 		
 	<center>
-		<h1>欢迎来到员工信息删除</h1>
+		<h1>欢迎来到事项记录删除</h1>
 	
 		<div id= "head">
-			<a href="../html/employee.html" class="a">返回管理系统</a>
-			<form id="form" action="deleteemployee.jsp" method="get">
-				<input type="text" name="inquire" placeholder="请输入查询员工姓名" id="inquire"/>
+			<a href="../html/event.html" class="a">返回管理系统</a>
+			<form id="form" action="deleteevent.jsp" method="get">
+				<input type="text" name="inquire" placeholder="请输入查询员工编号" id="inquire"/>
 				<input type="submit" value="查询" id="submit"/>
 			</form>
 		</div>
 		<table>
 			<tr>
+				<td>事项编号</td>
 				<td>员工编号</td>
-				<td>员工姓名</td>
-				<td>员工性别</td>
-				<td>员工年龄</td>
-				<td>员工生日</td>
-				<td>员工工资</td>
-				<td>员工邮箱</td>
-				<td>员工地址</td>
+				<td>迟到早退次数</td>
+				<td>加班次数</td>
+				<td>旷工次数</td>
+				<td>事项奖惩</td>
 			</tr>
 			
 			
 			<% 
 			int i = 0;
 			while(iter.hasNext()){
-				EmployeeEntity ee = (EmployeeEntity)iter.next();
+				EventEntity ee = (EventEntity)iter.next();
 		%>		
 		<tr <%if(i%2==0){ %>bgcolor="darkgray" <% }%>>
-			<td><%out.print(ee.getEmpId()); %></td>
-			<td><%out.print(ee.getEmpName()); %></td>
-			<td><%out.print(ee.getEmpSex()); %></td>
-			<td><%out.print(ee.getEmpAge()); %></td>
-			<td><%out.print(ee.getEmpBirthday()); %></td>
-			<td><%out.print(ee.getEmpBasic()); %></td>
-			<td><%out.print(ee.getEmpEmail()); %></td>
-			<td><%out.print(ee.getEmpAddress()); %></td>
-			<td><a href="daodeleteemployee.jsp?id=<%=ee.getEmpId() %>" class="anniu">删除</a></td>
+			<td><%out.print(ee.geteId()); %></td>
+			<td><%out.print(ee.geteMpid()); %></td>
+			<td><%out.print(ee.geteClocking()); %></td>
+			<td><%out.print(ee.geteOvertime()); %></td>
+			<td><%out.print(ee.geteBigevent()); %></td>
+			<td><%out.print(ee.geteAward()); %></td>
+			<td><a href="daodeleteevent.jsp?id=<%=ee.geteMpid()%>" class="anniu">删除</a></td>
 		</tr>
 		<%		
 			i++;	
