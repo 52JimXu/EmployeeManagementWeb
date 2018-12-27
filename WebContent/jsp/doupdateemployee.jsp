@@ -2,6 +2,7 @@
 <%@page import="com.wwwxy.employeemanagement.entity.EmployeeEntity"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,61 +61,38 @@
      
 </style>
 <body onload="getTime()">
-<%! 
-		int empid;
-		String empname;
-		String empsex;
-		int empage;
-		String empbirthday;
-		float empbasic;
-		String empemail;
-		String empaddress;
-	%>
 	<%
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		EmployeeDao ed = new EmployeeDao();
 		EmployeeEntity ee  = ed.getEmployeeById(id);
 		
-			empid = ee.getEmpId();
-			empname = ee.getEmpName();
-			empsex = ee.getEmpSex();
-			empage =ee.getEmpAge();
-			empbirthday =ee.getEmpBirthday();
-			empbasic = ee.getEmpBasic();
-			empemail = ee.getEmpEmail();
-			empaddress = ee.getEmpAddress();
-
-			String year;
-			String month;
-			String day;
-			String[] strs = empbirthday.split("-");
-			year =strs[0];
-			month = strs[1];
-			day = strs[2];
-			
-			boolean flag;
-			if("男".equals(empsex)){
-				flag = true;
-			}else{
-				flag=false;
-			}
-
+		pageContext.setAttribute("id", id);
+		pageContext.setAttribute("ee", ee);
 	%>
 <center>
-	<h1>欢迎来到工资记录修改</h1>
-		<form name="myform" onsubmit="return checkAll()" action="successupdateemployee.jsp?id=<%=id%>" method="post">
-			<div class="empid"><label for="inputs"><span id="disabled">员工编号:</span></label><input class="disabled" type="text" readonly value="<%=empid%>"><span class="bkxg">*不可修改</span><br><br></div>
-			<label for="inputs">员工姓名:</label><input name="name" type="text"  value="<%=empname%>"><br><br>
+	<h1>欢迎来到员工信息修改</h1>
+		<form name="myform" onsubmit="return checkAll()" action="successupdateemployee.jsp?id=${id }" method="post">
+			<div class="empid"><label for="inputs"><span id="disabled">员工编号:</span></label><input class="disabled" type="text" readonly value="${ee.empId }"><span class="bkxg">*不可修改</span><br><br></div>
+			<label for="inputs">员工姓名:</label><input name="name" type="text"  value="${ee.empName }"><br><br>
 			<label for="inputs">员工性别:</label>
 			
-			<input name="sex" type="radio" value="男" <%if(flag){%>checked<% } %>/>男
-			<input name="sex" type="radio" value="女" <%if(!flag){%>checked<% } %>/>女
-			
+			<%-- <input name="sex" type="radio" value="男" <%if(flag){%>checked<% } %>/>男
+			<input name="sex" type="radio" value="女" <%if(!flag){%>checked<% } %>/>女 --%>
+			<c:choose>
+				<c:when test="${ee.empSex eq '男' }">
+					<input name="sex" type="radio" value="男" checked/>男
+					<input name="sex" type="radio" value="女"/>女
+				</c:when>
+				<c:otherwise>
+					<input name="sex" type="radio" value="男"/>男
+					<input name="sex" type="radio" value="女" checked/>女
+				</c:otherwise>
+			</c:choose>
 
 
 			<br><br>
-			<div class="empage"><label for="inputs">员工年龄:</label><input name="age" id="empage" type="text" readonly value="<%=empage%>"><span class="bkxg">*请通过修改生日修改年龄</span><br><br></div>
+			<div class="empage"><label for="inputs">员工年龄:</label><input name="age" id="empage" type="text" readonly value="${ee.empAge }"><span class="bkxg">*请通过修改生日修改年龄</span><br><br></div>
 			<label for="inputs">员工生日:</label>
 			<select name="year"  id="year" onchange="getday()" >
         		<option value="1990">1990</option>
@@ -128,13 +106,13 @@
 			
 			
 			<br><br>
-			<label for="inputs">员工工资:</label><input name="basic" type="text"  value="<%=empbasic%>"><br><br>
+			<label for="inputs">员工工资:</label><input name="basic" type="text"  value="${ee.empBasic }"><br><br>
 			<div id="big">
-			<label for="inputs">员工邮箱:</label><input name="email" type="text" onblur="isEmail(this.value)" id="emailinput"  value="<%=empemail%>">
+			<label for="inputs">员工邮箱:</label><input name="email" type="text" onblur="isEmail(this.value)" id="emailinput"  value="${ee.empEmail }">
 			<span id ="email"></span>
 			</div>
 			<br>
-			<label for="inputs">员工地址:</label><input name="address" type="text"  value="<%=empaddress%>"><br><br>
+			<label for="inputs">员工地址:</label><input name="address" type="text"  value="${ee.empAddress }"><br><br>
 			
 			
 			
@@ -147,6 +125,12 @@
 <script language="JavaScript">
 		function getTime(){
 		    var year = document.myform.year;
+		    var otime = '${ee.empBirthday}';
+			var oyear = "",omonth = "", oday = "";
+			var oyear = otime.substr(0,4);
+			var omonth = otime.substr(5,2);
+			var oday = otime.substr(8,2);
+		    
 		    var start =1900;
 		    var end =2018;
 		    var html;
@@ -159,25 +143,25 @@
 		    var end2 =31;
 		    var Day;
 		    var daynum;
-		    if(<%=year%>%4==0&&<%=year%>%100 != 0||<%=year%>%400 == 0){
-		    	if(<%=month%>==1||<%=month%>==3||<%=month%>==5||<%=month%>==7||<%=month%>==8||<%=month%>==10||<%=month%>==12){
+		    if(oyear%4==0&&oyear%100 != 0||oyear%400 == 0){
+		    	if(omonth==1||omonth==3||omonth==5||omonth==7||omonth==8||omonth==10||omonth==12){
 		    		daynum=31;
-		    	}else if(<%=month%>==4||<%=month%>==6||<%=month%>==9||<%=month%>==11){
+		    	}else if(omonth==4||omonth==6||omonth==9||omonth==11){
 		    		daynum=30;
 		    	}else{
 		    		daynum=29;
 		    	}
 		    }else{
-		    	if(<%=month%>==1||<%=month%>==3||<%=month%>==5||<%=month%>==7||<%=month%>==8||<%=month%>==10||<%=month%>==12){
+		    	if(omonth==1||omonth==3||omonth==5||omonth==7||omonth==8||omonth==10||omonth==12){
 		    		daynum=31;
-		    	}else if(<%=month%>==4||<%=month%>==6||<%=month%>==9||<%=month%>==11){
+		    	}else if(omonth==4||omonth==6||omonth==9||omonth==11){
 		    		daynum=30;
 		    	}else{
 		    		daynum=28;
 		    	}
 		    }
 		    for(var i=start;i<=end;i++){
-		    	if(i==<%=year%>){
+		    	if(i==oyear){
 		    		html+="<option selected value="+i+">"+i+"</option>";
 		    	}else{
 		    		html+="<option value="+i+">"+i+"</option>";
@@ -185,7 +169,7 @@
 		    }
 		    year.innerHTML = html;
 		    for(var m=start1;m<=end1;m++){
-		        if(m==<%=month%>){
+		        if(m==omonth){
 		        	Month+="<option selected value="+m+">"+m+"</option>";
 		        }else{
 		        	Month+="<option value="+m+">"+m+"</option>";
@@ -194,7 +178,7 @@
 		    month.innerHTML = Month;
 		    
 		    for(var i=1;i<=daynum;i++){
-		    	if(i==<%=day%>){
+		    	if(i==oday){
 		        	Day += "<option selected value="+i+">"+i+"</option>";
 		    	}else{
 		    		Day += "<option value="+i+">"+i+"</option>";

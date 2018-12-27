@@ -11,14 +11,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>工资记录查询</title>
 <style type= "text/css">
-	td{
-		text-align:center;
-		width:120px;
-		font-size:20px;
-	}
 	#head{
-		padding:1% 0 2% 0;
-		width:621.6px;
+		width:100%;
+		display:inline-block;
 	}
 	 form{
 		width:220px;
@@ -54,6 +49,56 @@
 	#submit:hover{
 		cursor:pointer;
 	}
+	table{
+	font-size:15px; 
+} 
+table{ 
+table-layout:fixed; 
+empty-cells:show; 
+border-collapse: collapse; 
+margin:0 auto; 
+} 
+td{ 
+height:30px; 
+}  
+.table{ 
+border:1px solid #cad9ea; 
+color:#666; 
+} 
+.table td { 
+background-repeat:repeat-x; 
+height:30px; 
+} 
+.table td,.table td{ 
+border:1px solid #cad9ea; 
+padding:0 1em 0; 
+} 
+h1{	
+	margin:0;
+	text-align:center;
+}
+.box{
+	width:800px;
+	margin:50px auto;
+	background-color:white;
+}
+body{
+	background-image: url("../image/bg.jpg");
+            margin: 0px;
+            padding: 0px;
+			background-attachment:fixed;
+}
+a{
+	font-size:15px;
+}
+.return{
+	float:left;	
+	margin-left:70px;
+}
+ .select{
+ 	float:right;
+ 	margin-right:70px;
+ }
 </style>
 </head>
 <body>
@@ -71,16 +116,21 @@
 	pageContext.setAttribute("list", list);
 	%>
 		
-	<center>
+	<div  class="box">
+		<br>
 		<h1>欢迎来到工资记录查询</h1>
+		<br>
 		<div id= "head">
-			<a href="../html/salary.html">返回管理系统</a>
+			<div class="return"><a href="../html/salary.html">返回管理系统</a></div>
+			<div class="select">
 			<form id="form" action="getsalary.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工编号" id="inquire"/>
 				<input type="submit" value="查询" id="submit"/>
 			</form>
+			</div>
 		</div>
-		<table>
+		<br><br>
+		<table  width="90%" class="table">
 			<tr>
 				<td>工资编号</td>
 				<td>员工编号</td>
@@ -91,7 +141,7 @@
 			<c:forEach items="${list}" var="str" varStatus="st">
 			<c:choose>
 				<c:when test="${st.index%2==0 }">
-					<tr bgcolor="darkgray">
+					<tr bgcolor="#DCDCDC">
 				</c:when>
 				<c:otherwise>
 					<tr>
@@ -106,6 +156,7 @@
 			</tr>
 			</c:forEach>
 		</table>
-		</center>
+		<br><br>
+		</div>
 </body>
 </html>
