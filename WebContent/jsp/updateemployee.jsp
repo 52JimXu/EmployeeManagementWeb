@@ -4,40 +4,36 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>员工信息修改</title>
 <style type= "text/css">
-	td{
-		text-align:center;
-		width:120px;
-		font-size:20px;
-	}
 	.anniu{
-		font-size: 20px;
+		font-size: 15px;
 		color: #000000;
 		text-decoration:none
 	}
 	.anniu:link {
-		font-size: 20px;
+		font-size: 15px;
 		color: #000000;
 		text-decoration: none;
 	}
 	.anniu:visited {
-	 	font-size: 20px;
+	 	font-size: 15px;
 	 	color: #000000;
 	 	text-decoration: none;
 	}
 	.anniu:hover {
-		font-size: 20px;
+		font-size: 15px;
 		color: blue;
-		text-decoration: underline;
+		text-decoration: none;
 	}
 	#head{
-		padding:1% 0 2% 0;
-		width:745.6px;
+		width:100%;
+		display:inline-block;
 	}
 	 form{
 		width:220px;
@@ -49,7 +45,7 @@
 	    color: black;
 	    text-decoration: none;
 	    background-color: #DCDCDC;
-	    font-size:16px;
+	    font-size:15px;
 	    border-radius:5px;
 	    display:inline-block;
 	    margin-right:200px;
@@ -73,41 +69,89 @@
 	#submit:hover{
 		cursor:pointer;
 	}
+	table{
+	font-size:15px; 
+} 
+table{ 
+table-layout:fixed; 
+empty-cells:show; 
+border-collapse: collapse; 
+margin:0 auto; 
+} 
+td{ 
+height:30px; 
+word-break:break-all;
+}  
+.table{ 
+border:1px solid #cad9ea; 
+color:#666; 
+} 
+.table td { 
+background-repeat:repeat-x; 
+height:30px; 
+} 
+.table td,.table td{ 
+border:1px solid #cad9ea; 
+padding:0 1em 0; 
+} 
+h1{	
+	margin:0;
+	text-align:center;
+}
+.box{
+	width:1200px;
+	margin:50px auto;
+	background-color:white;
+}
+body{
+	background-image: url("../image/bg.jpg");
+            margin: 0px;
+            padding: 0px;
+			background-attachment:fixed;
+}
+a{
+	font-size:15px;
+}
+.return{
+	float:left;	
+	margin-left:70px;
+}
+ .select{
+ 	float:right;
+ 	margin-right:70px;
+ }
 </style>
 </head>
 <body>
+
 	<%
 		String name = null;
-		List<EmployeeEntity> list=null;
-		Iterator iter = null;
-		try{
-		 	name = request.getParameter("inquire");  
-		}catch(NumberFormatException e){
-			name=null;
-		}
-			EmployeeDao ed = new EmployeeDao();
-		
-			EmployeeEntity ee1 = new EmployeeEntity();
-		if(name !=null){
-			List<EmployeeEntity> list1= ed.getEmployeeByName(name);
-			iter = list1.iterator();
+		List<EmployeeEntity> list = null;
+		EmployeeDao ed = new EmployeeDao();
+		if(request.getParameter("inquire")!=null){
+			name = request.getParameter("inquire");
+			list = ed.getEmployeeByName(name);
 		}else{
-			list =ed.getAllEmployee();
-			iter = list.iterator();
+			list = ed.getAllEmployee();
 		}
+		pageContext.setAttribute("list", list);
 	%>
 		
-	<center>
+	<div  class="box">
+		<br>
 		<h1>欢迎来到员工信息修改</h1>
-	
+	<br>
 		<div id= "head">
-			<a href="employee.jsp" class="a">返回管理系统</a>
+			<div class="return"><a href="employee.jsp" class="a">返回管理系统</a></div>
+			<div class="select">
 			<form id="form" action="updateemployee.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工姓名" id="inquire"/>
 				<input type="submit" value="查询" id="submit"/>
 			</form>
+			</div>
 		</div>
-		<table>
+		<br><br>
+		<table width="90%" class="table">
 			<tr>
 				<td>员工编号</td>
 				<td>员工姓名</td>
@@ -117,30 +161,31 @@
 				<td>员工工资</td>
 				<td>员工邮箱</td>
 				<td>员工地址</td>
+				<td></td>
 			</tr>
+			<c:forEach items="${list }" var="str" varStatus="st">
+				<c:choose>
+					<c:when test="${st.index%2==0 }">
+						<tr bgcolor="#DCDCDC">
+					</c:when>
+					<c:otherwise>
+						<tr>
+					</c:otherwise>
+				</c:choose>
+				<td>${str.empId}</td>
+				<td>${str.empName }</td>
+				<td>${str.empSex }</td>
+				<td>${str.empAge }</td>
+				<td>${str.empBirthday}</td>
+				<td>${str.empBasic}</td>
+				<td>${str.empEmail}</td>
+				<td>${str.empAddress}</td>
+				<td><a href="doupdateemployee.jsp?id=${str.empId }" class="anniu">修改</a></td>
+				</tr>
+			</c:forEach>
 			
-			
-			<% 
-			int i = 0;
-			while(iter.hasNext()){
-				EmployeeEntity ee = (EmployeeEntity)iter.next();
-		%>		
-		<tr <%if(i%2==0){ %>bgcolor="darkgray" <% }%>>
-			<td><%out.print(ee.getEmpId()); %></td>
-			<td><%out.print(ee.getEmpName()); %></td>
-			<td><%out.print(ee.getEmpSex()); %></td>
-			<td><%out.print(ee.getEmpAge()); %></td>
-			<td><%out.print(ee.getEmpBirthday()); %></td>
-			<td><%out.print(ee.getEmpBasic()); %></td>
-			<td><%out.print(ee.getEmpEmail()); %></td>
-			<td><%out.print(ee.getEmpAddress()); %></td>
-			<td><a href="doupdateemployee.jsp?id=<%=ee.getEmpId() %>" class="anniu">修改</a></td>
-		</tr>
-		<%		
-			i++;	
-			}
-		%>
 		</table>
-		</center>
+		<br><br>
+		</div>
 </body>
 </html>
