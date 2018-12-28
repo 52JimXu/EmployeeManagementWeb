@@ -158,6 +158,7 @@ a{
 				<td>${str.empBasic}</td>
 				<td>${str.empEmail}</td>
 				<td>${str.empAddress}</td>
+				</tr>
 			</c:forEach>
 		</table>
 		<br><br>
