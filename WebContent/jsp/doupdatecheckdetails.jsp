@@ -22,16 +22,18 @@
 <style type="text/css">
 	form{
 		margin:0px;
-		font-size:20px;
+		font-size:15px;
+		margin-right:60px;
 	}
 	label{
 	            display: inline-block;
 	            width: 120px;/*或者 width: 100px;*/
 	        }
-	#submit{
-		width:100px;
-		height:50px;
-		font-size:25px;
+		#submit{
+		width:60px;
+		height:40px;
+		font-size:17px;
+		margin:20px 0 0 80px;
 	}
 	#submit:hover{
 		cursor:pointer;
@@ -54,6 +56,38 @@
      #status{
      	margin-right:55px;
      }
+     .a{
+	    height: 25px;
+	    color: black;
+	    text-decoration: none;
+	    background-color: #DCDCDC;
+	    font-size:15px;
+	    border-radius:5px;
+	    display:inline-block;
+	    margin-right:200px;
+	} 
+    a{
+		font-size:15px;
+	}
+     .return{
+	/* float:left;	 */
+	margin-right:16%;
+	}
+    #head{
+		width:100%;
+	}
+	center{
+		width:600px;
+		height:640px;
+		margin:50px auto;
+	    background-color: white;
+	}
+	body{
+		background-image: url("../image/bg.jpg");
+        margin: 0px;
+        padding: 0px;
+		background-attachment:fixed;
+	}
 </style>
 
 </head>
@@ -73,7 +107,13 @@
 	
 	
 	<center>
+	<br>
 	<h1>欢迎来到考勤记录修改</h1>
+	<br>
+	<div id= "head">
+		<div class="return"><a href="updatecheckdetails.jsp" class="a">返回管理系统</a></div>
+	</div>
+	<br>
 		<form name="myform" action="successupdatecheckdetails.jsp?id=${id }" method="post">
 			<label for="inputs">考勤编号:</label><input name="cid" class="disabled" type="text" readonly value="${list[0].cid }"><span>*不可修改</span><br><br>
 			<label for="inputs">员工编号:</label><input name="empid" class="disabled" type="text" readonly value="${list[0].empid }"><span>*不可修改</span><br><br>

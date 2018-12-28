@@ -73,9 +73,9 @@
     <div class="nr">
         <div class="nav"><h1>人力资源管理系统</h1></div>
         <div class="zy">
-            <div class="xx"><a href="../jsp/addadminlogin.jsp">新增管理员</a></div>
-            <div class="xx"><a href="../jsp/addemployee.jsp">新增员工</a></div>
-            <div class="xx"><a href="login.html">退出新增管理</a></div>
+            <div class="xx"><a href="addadminlogin.jsp">新增管理员</a></div>
+            <div class="xx"><a href="addemplogin.jsp">新增员工</a></div>
+            <div class="xx"><a href="logininfo.jsp">退出新增管理</a></div>
         </div>
     </div>
     <div class="bg"></div>

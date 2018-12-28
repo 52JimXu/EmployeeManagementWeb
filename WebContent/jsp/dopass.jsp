@@ -5,6 +5,10 @@
 <%
 	if(session.getAttribute("admin")==null){
 		response.sendRedirect("../login.jsp");
+	}else{
+		if((int)session.getAttribute("admin")==0){
+			response.sendRedirect("empmain.jsp");
+		}
 	}
 %>
 <head>
@@ -69,7 +73,7 @@
     <div class="nr">
         <div class="nav"><h1>人力资源管理系统</h1></div>
         <div class="zy">
-            <div class="xx"><a href="">重置密码</a></div>
+            <div class="xx"><a href="resetpassword.jsp">重置密码</a></div>
             <div class="xx"><a href="">修改密码</a></div>
             <div class="xx"><a href="main.jsp">退出密码管理</a></div>
         </div>

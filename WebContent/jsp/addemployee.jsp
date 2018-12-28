@@ -21,16 +21,18 @@
 <style type="text/css">
 	form{
 		margin:0px;
-		font-size:20px;
+		font-size:15px;
+		margin-right:60px;
 	}
 	label{
-	            display: inline-block;
-	            width: 120px;/*或者 width: 100px;*/
+	     display: inline-block;
+	     width: 120px;/*或者 width: 100px;*/
 	        }
 	#submit{
-		width:100px;
-		height:50px;
-		font-size:25px;
+		width:60px;
+		height:40px;
+		font-size:17px;
+		margin-left:80px;
 	}
 	#submit:hover{
 		cursor:pointer;
@@ -38,13 +40,13 @@
 	
 	
 	input{
-                border: 1px solid #ccc; 
-                padding: 7px 0px;
-                border-radius: 3px; /*css3属性IE不支持*/
-                padding-left:5px; 
+        border: 1px solid #ccc; 
+        padding: 7px 0px;
+        border-radius: 3px; /*css3属性IE不支持*/
+        padding-left:5px; 
             }
             
-       .disabled{
+     .disabled{
        			/* margin-right:-50px; */
        }     
      .bkxg{
@@ -63,8 +65,39 @@
      }
       form .empage{
      	margin-left:125px;
-     } 
-     
+     }
+    .a{
+	    height: 25px;
+	    color: black;
+	    text-decoration: none;
+	    background-color: #DCDCDC;
+	    font-size:15px;
+	    border-radius:5px;
+	    display:inline-block;
+	    margin-right:200px;
+	} 
+    a{
+		font-size:15px;
+	}
+     .return{
+	/* float:left;	 */
+	margin-right:16%;
+	}
+    #head{
+		width:100%;
+	}
+	center{
+		width:600px;
+		height:640px;
+		margin:50px auto;
+	    background-color: white;
+	}
+	body{
+		background-image: url("../image/bg.jpg");
+        margin: 0px;
+        padding: 0px;
+		background-attachment:fixed;
+	}
 </style>
 <body onload="getTime()">
 
@@ -77,8 +110,14 @@
 
 
 <center>
+	<br>
 	<h1>欢迎来到员工信息新增</h1>
-		<form name="myform" method="post" action="doaddemployee.jsp" onsubmit="return checkAll()">
+	<br>
+	<div id= "head">
+		<div class="return"><a href="employee.jsp" class="a">返回管理系统</a></div>
+	</div>
+	<br>
+		<form name="myform"  method="post" action="doaddemployee.jsp" onsubmit="return checkAll()">
 			<div id="n">
 			<label for="inputs">员工姓名:</label><input name="empname" onblur="checkname()" id="nameinput" type="text"  value="">
 			<span id ="name"></span>

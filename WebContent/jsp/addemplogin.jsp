@@ -19,17 +19,18 @@
 <title>新增员工登录信息</title>
 <style type="text/css">
 	form{
-		margin:0px;
-		font-size:20px;
+		margin:0 77px 0 0;
+		font-size:15px;
 	}
 	label{
 	            display: inline-block;
 	            width: 120px;/*或者 width: 100px;*/
 	        }
 	#submit{
-		width:100px;
-		height:50px;
-		font-size:25px;
+		width:60px;
+		height:40px;
+		font-size:17px;
+		margin:20px 0 0 80px;
 	}
 	#submit:hover{
 		cursor:pointer;
@@ -70,7 +71,38 @@
      	display: inline-block;
 	    width: 230px;/*或者 width: 100px;*/
      }
-     
+      a{
+		font-size:15px;
+	}
+     .return{
+	/* float:left;	 */
+	margin-right:16%;
+	}
+    #head{
+		width:100%;
+	}
+	center{
+		width:650px;
+		height:460px;
+		margin:50px auto;
+	    background-color: white;
+	}
+	.a{
+	    height: 25px;
+	    color: black;
+	    text-decoration: none;
+	    background-color: #DCDCDC;
+	    font-size:15px;
+	    border-radius:5px;
+	    display:inline-block;
+	    margin-right:200px;
+	}
+	body{
+		background-image: url("../image/bg.jpg");
+        margin: 0px;
+        padding: 0px;
+		background-attachment:fixed;
+	}
 </style>
 </head>
 <body onload="getTime()">
@@ -85,7 +117,13 @@
 			%>
 
 <center>
+	<br>
 	<h1>欢迎来到员工登录信息新增</h1>
+	<br>
+	<div id= "head">
+		<div class="return"><a href="addlogin.jsp" class="a">返回管理系统</a></div>
+	</div>
+	<br>
 		<form name="myform" method="post" action="doaddemplogin.jsp" onsubmit="return checkAll()">
 			<div id="n">
 			<label for="inputs">用户名:</label><input name="username" onblur="checkname()" id="nameinput" type="text"  value=""><span id ="name"></span>
