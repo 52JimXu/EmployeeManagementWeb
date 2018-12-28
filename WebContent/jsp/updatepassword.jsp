@@ -45,23 +45,23 @@
 </style>
 </head>
 <body>
-<%! 
-		int id;
-		String username;
-	%>
-	<%
-		LoginEntity le = new LoginEntity();
-		int id = Integer.parseInt(request.getParameter("id"));
-		LoginDao sd = new LoginDao();
+<%
+	int id;
+	String username;
+	LoginEntity le = new LoginEntity();
+	LoginDao sd = new LoginDao();
+	if(request.getParameter("id")!=null){
+		id = Integer.parseInt(request.getParameter("id"));
 		le = sd.getLoginById0(id);
-		
-			id = le.getId();
-			username = le.getUsername();
+		id = le.getId();
+		username = le.getUsername();
+		pageContext.setAttribute("username", username);
+	}
 	%>
 <center>
 	<h1>欢迎来到密码信息修改</h1>
 		<form name="myform">
-			<div class="username"><label for="inputs">用户名:</label><input readonly type="text" value="<%=username%>">
+			<div class="username"><label for="inputs">用户名:</label><input readonly type="text" value="${username }">
 			<span class="bkxg">*不可修改</span>
 			</div><br>
 			<div id="n"><label for="inputs">旧密码:</label><input id="nameinput" onblur="checkold()" type="password" value="">
