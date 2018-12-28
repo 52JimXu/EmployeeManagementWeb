@@ -23,7 +23,7 @@
             width: 100%; /* 全宽 */
             height: 100%; /* 全高 */
             overflow: auto; /* 允许滚动 */
-            background:rgba(0,0,0,0.5);
+           background-color: rgba(0,0,0,0.4); /* 背景色 */
         }
         /*模态框内容*/
         .modal-content {
@@ -42,8 +42,8 @@
         /*关闭X 样式*/
         .close {
             border-radius: 5px;
-           margin-top: 5px;
-            margin-left: 380px;
+           margin-top: 87px;
+            margin-left: 398px;
         }
         .close:hover{
 
@@ -96,11 +96,7 @@
 				}
 		 	}else{
 		 		%>
-		 			<script type="text/javascript"> 
-		 				window.onload = function(){
-		 					error();
-		 				};
-		 			</script>
+		 			<script type="text/javascript"> error();</script>
 		 		<% 
 		 		response.setHeader("refresh","3;../login.jsp");
 			%>
@@ -115,9 +111,10 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <div>
-            	<h3>登录失败</h3>
-		                密码或账号错误请重新登陆。。。<br/>
-		                三秒返回登录页面
+                密码或账号错误请重新登陆。。。<br/>
+                <br>
+                <br>
+                三秒返回登录页面
             </div>
             <div id="closeBtn" class="close">确定</div>
         </div>

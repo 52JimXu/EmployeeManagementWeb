@@ -2,7 +2,17 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%
+	if(session.getAttribute("admin")==null){
+		response.sendRedirect("../login.jsp");
+	}else{
+		if((int)session.getAttribute("admin")==0){
+			response.sendRedirect("empmain.jsp");
+		}
+	}
+%>
 <head>
+
     <meta charset="UTF-8">
     <title>人力资源管理系统</title>
     <style type="text/css">
@@ -61,6 +71,7 @@
      </style>
 </head>
 <body>
+1:${sessionScope.username }
     <div class="nr">
         <div class="nav"><h1>人力资源管理系统</h1></div>
         <div class="zy">
