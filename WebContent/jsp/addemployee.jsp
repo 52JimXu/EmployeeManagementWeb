@@ -98,6 +98,30 @@
         padding: 0px;
 		background-attachment:fixed;
 	}
+	.exit{
+        	display:inline-block;
+        	background-color:transparent;
+        	padding:0;
+        	color:white;
+        	text-decoration:none;
+        }
+        .exit:hover{
+        	display: inline-block;
+            color: red;
+            cursor:pointer;
+        }
+         .exit:active{
+           
+           display: inline-block;
+           background-color:transparent;
+       }
+        .welcome{
+        	width:170px;
+        	height:25px;
+        	float:right;
+        	margin-right:300px;
+        	color:white;
+        }
 </style>
 <body onload="getTime()">
 
@@ -108,7 +132,8 @@
 		
 %>
 
-
+<br>
+	<div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
 <center>
 	<br>
 	<h1>欢迎来到员工信息新增</h1>

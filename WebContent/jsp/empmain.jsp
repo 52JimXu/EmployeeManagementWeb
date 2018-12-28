@@ -67,17 +67,42 @@
             margin: 0px;
             padding: 0px;
         }
+                .exit{
+        	display:inline-block;
+        	background-color:transparent;
+        	padding:0;
+        	color:white;
+        }
+        .exit:hover{
+        	display: inline-block;
+            color: red;
+            cursor:pointer;
+        }
+         .exit:active{
+           
+           display: inline-block;
+           background-color:transparent;
+       }
+        .welcome{
+        	width:170px;
+        	height:25px;
+        	float:right;
+        	margin-right:300px;
+        	color:white;
+        }
      </style>
 </head>
 <body>
+<br>
+<div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
     <div class="nr">
         <div class="nav"><h1>人力资源管理系统</h1></div>
         <div class="zy">
             <div class="xx"><a href="">查询工资信息</a></div>
             <div class="xx"><a href="">查询事项信息</a></div>
             <div class="xx"><a href="">考勤打卡系统</a></div>
-            <div class="xx"><a href="">修改密码</a></div>
-            <div class="xx"><a href="adminlogin.jsp">退出管理系统</a></div>
+            <div class="xx"><a href="updatepassword.jsp">修改密码</a></div>
+            <div class="xx"><a href="exit.jsp">退出管理系统</a></div>
         </div>
     </div>
     <div class="bg"></div>

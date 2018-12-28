@@ -83,6 +83,30 @@
         padding: 0px;
 		background-attachment:fixed;
 	}
+		.exit{
+        	display:inline-block;
+        	background-color:transparent;
+        	padding:0;
+        	color:white;
+        	text-decoration:none;
+        }
+        .exit:hover{
+        	display: inline-block;
+            color: red;
+            cursor:pointer;
+        }
+         .exit:active{
+           
+           display: inline-block;
+           background-color:transparent;
+       }
+        .welcome{
+        	width:170px;
+        	height:25px;
+        	float:right;
+        	margin-right:300px;
+        	color:white;
+        }
 </style>
 
 </head>
@@ -96,13 +120,14 @@
 		pageContext.setAttribute("id", id);
 	%>
 	
-	
+	<br>
+	<div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
 	<center>
 	<br>
 	<h1>欢迎来到工资记录修改</h1>
 	<br>
 	<div id= "head">
-		<div class="return"><a href="updatesalary.jsp" class="a">返回管理系统</a></div>
+		<div class="return"><a href="updatesalary.jsp" class="a">返回工资信息修改</a></div>
 	</div>
 	<br>
 		<form name="myform" action="successupdatesalary.jsp?id=${id }" method="post">
