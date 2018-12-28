@@ -44,6 +44,7 @@ public class LoginDao {
 			PreparedStatement ps = null;
 			ResultSet rs = null;
 			String row = "0";
+			String id= "";
 			list.add(0,row);
 			String flag ="false";
 			list.add(1,flag);
@@ -56,8 +57,10 @@ public class LoginDao {
 				if(rs.next()){
 					row = rs.getString("admin");
 					flag = "true";
+					id = rs.getString("id");
 					list.add(0,row);
 					list.add(1,flag);
+					list.add(2,id);
 				}
 			}catch(Exception e){
 				e.printStackTrace();
