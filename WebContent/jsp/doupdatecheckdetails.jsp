@@ -88,6 +88,30 @@
         padding: 0px;
 		background-attachment:fixed;
 	}
+		.exit{
+        	display:inline-block;
+        	background-color:transparent;
+        	padding:0;
+        	color:white;
+        	text-decoration:none;
+        }
+        .exit:hover{
+        	display: inline-block;
+            color: red;
+            cursor:pointer;
+        }
+         .exit:active{
+           
+           display: inline-block;
+           background-color:transparent;
+       }
+        .welcome{
+        	width:170px;
+        	height:25px;
+        	float:right;
+        	margin-right:300px;
+        	color:white;
+        }
 </style>
 
 </head>
@@ -104,17 +128,18 @@
 		pageContext.setAttribute("list", list);
 		pageContext.setAttribute("lists", lists);
 	%>
-	
+	<br>
+	<div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
 	
 	<center>
 	<br>
 	<h1>欢迎来到考勤记录修改</h1>
 	<br>
 	<div id= "head">
-		<div class="return"><a href="updatecheckdetails.jsp" class="a">返回管理系统</a></div>
+		<div class="return"><a href="updatecheckdetails.jsp" class="a">返回考勤修改</a></div>
 	</div>
 	<br>
-		<form name="myform" action="successupdatecheckdetails.jsp?id=${id }" method="post">
+		<form name="myform" onsubmit="return checkAll()" action="successupdatecheckdetails.jsp?id=${id }" method="post">
 			<label for="inputs">考勤编号:</label><input name="cid" class="disabled" type="text" readonly value="${list[0].cid }"><span>*不可修改</span><br><br>
 			<label for="inputs">员工编号:</label><input name="empid" class="disabled" type="text" readonly value="${list[0].empid }"><span>*不可修改</span><br><br>
 			<label for="inputs">上班打卡:</label><input name="checkin" class="disabled" type="text" readonly value="${list[0].ccheckin }"><span>*不可修改</span><br><br>

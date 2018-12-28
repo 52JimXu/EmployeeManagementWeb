@@ -73,7 +73,6 @@
 				 String myid = String.valueOf(id1);
 					int id = Integer.parseInt(myid);
 					String username = ld.getLoginById5(id);
-				 session.setAttribute("admin", 0);
 		 		 session.setAttribute("admin", 1);
 		 		 session.setAttribute("username", username);
 		 		 session.setAttribute("id", id);
@@ -87,7 +86,8 @@
 					int id = Integer.parseInt(myid);
 					String username = ld.getLoginById5(id);
 				 session.setAttribute("admin", 0);
-				 session.setAttribute("admin", 0);
+				 session.setAttribute("id", id);
+				 session.setAttribute("username", username);
 				 response.sendRedirect("empmain.jsp");
 				//out.print("员工登入成功！"); 
 			%>

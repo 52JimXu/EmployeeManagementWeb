@@ -7,10 +7,6 @@
 <%
 	if(session.getAttribute("admin")==null){
 		response.sendRedirect("../login.jsp");
-	}else{
-		if((int)session.getAttribute("admin")==0){
-			response.sendRedirect("empmain.jsp");
-		}
 	}
 %>
 <head>
@@ -48,9 +44,66 @@
                 border-radius: 3px; /*css3属性IE不支持*/
                 padding-left:5px; 
      }
-      .username{
-     	margin-left:55px;
-     } 
+     h1{	
+	margin:0;
+	text-align:center;
+}
+.box{
+	width:800px;
+	margin:50px auto;
+	background-color:white;
+}
+body{
+	background-image: url("../image/bg.jpg");
+            margin: 0px;
+            padding: 0px;
+			background-attachment:fixed;
+}
+a{
+	font-size:15px;
+}
+.return{
+	float:left;	
+	margin-left:70px;
+}
+ .select{
+ 	float:right;
+ 	margin-right:70px;
+ }
+     	.exit{
+        	display:inline-block;
+        	background-color:transparent;
+        	padding:0;
+        	color:white;
+        	text-decoration:none;
+        }
+        .exit:hover{
+        	display: inline-block;
+            color: red;
+            cursor:pointer;
+        }
+         .exit:active{
+           
+           display: inline-block;
+           background-color:transparent;
+       }
+        .welcome{
+        	width:170px;
+        	height:25px;
+        	float:right;
+        	margin-right:300px;
+        	color:white;
+        }
+        .input123{
+        	width:400px;
+        	height:300px;
+        	margin:0 auto;
+        }
+        .submit{
+        	width:100px;
+        	height:50px;
+        	margin:0 auto;
+        }
 </style>
 </head>
 <body>
@@ -67,25 +120,32 @@
 		pageContext.setAttribute("username", username);
 	}
 	%>
-<center>
+	<br>
+	<div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
+<div  class="box">
+		<br>
 	<h1>欢迎来到密码信息修改</h1>
-		<form name="myform">
-			<div class="username"><label for="inputs">用户名:</label><input readonly type="text" value="${username }">
+	<br>
+		<form name="myform" action="doupdatepass.jsp?id=${sessionScope.id } " onsubmit="return checkAll()" method="post">
+			<div class="input123">
+			<div class="username"><label for="inputs">用户名:</label><input name="username" readonly type="text" value="${sessionScope.username }">
 			<span class="bkxg">*不可修改</span>
 			</div><br>
-			<div id="n"><label for="inputs">旧密码:</label><input id="nameinput" onblur="checkold()" type="password" value="">
+			<div id="n"><label for="inputs">旧密码:</label><input id="nameinput" name="oldpassword" onblur="checkold()" type="password" value="">
 			<span id="name"></span>
 			</div><br>
-			<div id="p"><label for="inputs">新密码:</label><input onblur="checknew()" id="passinput" type="password" value="">
+			<div id="p"><label for="inputs">新密码:</label><input onblur="checknew()" name="password" id="passinput" type="password" value="">
 			<span id="pass"></span>
 			</div><br>
 			
-			<br><br>
-			<input type="submit" id="submit" value="修改">
-			
+			<br>
+			<div class="submit">
+				<input type="submit" id="submit" value="修改">
+			</div>
+			</div>
 		</form>
-	
-	</center>
+	<br><br>
+		</div>
 	
 	<script language="JavaScript">
 	    function checkold(){
@@ -95,7 +155,7 @@
      if((obj.value)==""){
          name.innerHTML =("*旧密码不能为空");
          name.style.cssText="color:red;font-size:12px;display:inline-block;";
-         n.style.cssText="margin-left:95px;";
+         n.style.cssText="margin-left:0;";
          return false;
      }else{
     	 	name.style.cssText="display:none;";
@@ -111,17 +171,32 @@
      if((obj.value)==""){
          pass.innerHTML =("*新密码不能为空");
          pass.style.cssText="color:red;font-size:12px;display:inline-block;";
-         p.style.cssText="margin-left:95px;";
+         p.style.cssText="margin-left:0;";
          return false;
      }else if((oldobj.value)==(obj.value)){
     	 pass.innerHTML =("*新旧密码不能一样");
          pass.style.cssText="color:red;font-size:12px;display:inline-block;";
-         p.style.cssText="margin-left:105px;";
+         p.style.cssText="margin-left:0;";
+         return false;
      }else{	
     	 	pass.style.cssText="display:none;";
     	 	p.style.cssText="margin-left:0;";
     	 	return true;
     	 }
+    }
+    function checkAll(){
+    	var flag = false;
+    	if(checkold()){
+    		flag = true;
+	    	if(checknew()){
+	    		flag = true;
+	    	}else{
+	    		flag = false;
+	    	}
+    	}else{
+    		flag=false;
+    	}
+    	return flag;
     }
 </script>
 

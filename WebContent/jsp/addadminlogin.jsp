@@ -65,7 +65,7 @@
      	margin-left:125px;
      } 
      .pass{
-     	margin-left:145px;
+     	margin-left:130px;
      }
      .lable{
      	display: inline-block;
@@ -103,8 +103,37 @@
         padding: 0px;
 		background-attachment:fixed;
 	}
+	#n{
+		margin-left:-15px;
+	}
+	.exit{
+        	display:inline-block;
+        	background-color:transparent;
+        	padding:0;
+        	color:white;
+        	text-decoration:none;
+        }
+        .exit:hover{
+        	display: inline-block;
+            color: red;
+            cursor:pointer;
+        }
+         .exit:active{
+           color:white;
+           display: inline-block;
+           background-color:transparent;
+       }
+        .welcome{
+        	width:170px;
+        	height:25px;
+        	float:right;
+        	margin-right:300px;
+        	color:white;
+        }
 </style>
 </head>
+<br>
+	<div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
 <body onload="getTime()">
 
 			<%
@@ -169,7 +198,7 @@
      if((obj.value)==""){
          name.innerHTML =("*姓名不正确");
          name.style.cssText="color:red;font-size:12px;display:inline-block;";
-         n.style.cssText="margin-left:75px;";
+         n.style.cssText="margin-left:55px;";
          return false;
      }else{
     	 	name.style.cssText="display:none;";
@@ -184,7 +213,7 @@
      if((obj.value)==""){
          pass.innerHTML =("*密码不能为空");
          pass.style.cssText="color:red;font-size:12px;display:inline-block;";
-         p.style.cssText="margin-left:70px;";
+         p.style.cssText="margin-left:60px;";
          return false;
      }else{	
     	 	pass.style.cssText="display:none;";

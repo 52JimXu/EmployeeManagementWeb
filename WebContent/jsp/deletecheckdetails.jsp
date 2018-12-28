@@ -127,6 +127,30 @@ a{
  	float:right;
  	margin-right:70px;
  }
+ 	.exit{
+        	display:inline-block;
+        	background-color:transparent;
+        	padding:0;
+        	color:white;
+        	text-decoration:none;
+        }
+        .exit:hover{
+        	display: inline-block;
+            color: red;
+            cursor:pointer;
+        }
+         .exit:active{
+           
+           display: inline-block;
+           background-color:transparent;
+       }
+        .welcome{
+        	width:170px;
+        	height:25px;
+        	float:right;
+        	margin-right:300px;
+        	color:white;
+        }
 </style>
 </head>
 <body>
@@ -142,6 +166,8 @@ a{
 	}
 	pageContext.setAttribute("list", list);
 	%>
+	<br>
+	<div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
 	<div  class="box">
 		<br>
 		<h1>欢迎来到考勤记录删除</h1>
