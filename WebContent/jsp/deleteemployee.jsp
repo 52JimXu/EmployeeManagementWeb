@@ -139,7 +139,7 @@ body{
 		<h1>欢迎来到员工信息删除</h1>
 	<br>
 		<div id= "head">
-			<div class="return"><a href="../html/employee.html" class="a">返回管理系统</a></div>
+			<div class="return"><a href="employee.jsp" class="a">返回管理系统</a></div>
 			<div class="select">
 			<form id="form" action="deleteemployee.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工姓名" id="inquire"/>

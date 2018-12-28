@@ -120,7 +120,7 @@ a{
 		<h1>欢迎来到考勤记录查询</h1>
 	<br>
 		<div id= "head">
-			<div class="return"><a href="../html/checkdetail.html">返回管理系统</a></div>
+			<div class="return"><a href="checkdetail.jsp">返回管理系统</a></div>
 			<div class="select">
 			<form id="form" action="getcheckdetails.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工编号" id="inquire"/>

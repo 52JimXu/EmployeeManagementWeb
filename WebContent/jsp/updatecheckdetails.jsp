@@ -100,7 +100,7 @@
 		<h1>欢迎来到考勤记录修改</h1>
 	
 		<div id= "head">
-			<a href="../html/checkdetail.html" class="a">返回管理系统</a>
+			<a href="checkdetail.jsp" class="a">返回管理系统</a>
 			<form id="form" action="updatecheckdetails.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工编号" id="inquire"/>
 				<input type="submit" value="查询" id="submit"/>
