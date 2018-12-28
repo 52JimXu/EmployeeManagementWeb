@@ -18,10 +18,10 @@
             margin:0;
             /* background-color:black; */
         }
-        form{
-            margin:0px;
-            font-size:20px;
-        }
+       form{
+		font-size:15px;
+		margin:0 17px 0 0;
+	}
         label{
             display: inline-block;
             width: 120px;/*或者 width: 100px;*/
@@ -43,8 +43,7 @@
         	margin:0 0 20px 0;
         }
         .anniu{
-            whidth:50px;
-            padding:10px 0 0 55px;
+            padding:15px 0 0 50px;
             display:block;
         }
         .q1{
@@ -55,8 +54,33 @@
 		}
 		.submit,.reset{
 			width:50px;
-			height:35px;
-			font-size:18px;
+			height:30px;
+			font-size:17px;
+	}
+	a{
+		font-size:15px;
+	}
+	center{
+		width:538px;
+		height:330px;
+		margin:160px auto;
+	    background-color: #C8C8C8;
+	}
+	  .a{
+	    height: 25px;
+	    color: black;
+	    text-decoration: none;
+	    background-color: #DCDCDC;
+	    font-size:15px;
+	    border-radius:5px;
+	    display:inline-block;
+	    margin-right:200px;
+	}
+	body{
+		background-image: url("image/bg.jpg");
+        margin: 0px;
+        padding: 0px;
+		background-attachment:fixed;
 	}
     </style>
     <script language="JavaScript">
@@ -133,7 +157,9 @@
 <body>
 
 <center>
+	<br>
     <h1>人力资源管理系统</h1>
+
     <form  class="form" name="myform" onsubmit="return checkAll()" action="jsp/daologin.jsp" method="post">
     <div id= "inputtwo">
         <div id="user">

@@ -42,7 +42,7 @@
             overflow: hidden;
             width: 170px;
             height: 30px;
-            margin-top: 41px;
+            margin-top: 10px;
             border-radius: 25px;
             background-color: chartreuse;
         }
