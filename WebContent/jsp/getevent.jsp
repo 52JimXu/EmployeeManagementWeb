@@ -120,7 +120,7 @@ a{
 		<h1>欢迎来到事项记录查询</h1>
 	<br>
 		<div id= "head">
-			<div class="return"><a href="../html/event.html">返回管理系统</a></div>
+			<div class="return"><a href="event.jsp">返回管理系统</a></div>
 			<div class="select">
 			<form id="form" action="getevent.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工编号" id="inquire"/>

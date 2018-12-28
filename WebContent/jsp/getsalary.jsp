@@ -2,9 +2,9 @@
 <%@page import="com.wwwxy.employeemanagement.entity.SalaryEntity"%>
 <%@page import="java.util.List"%>
 <%@page import="com.wwwxy.employeemanagement.dao.SalaryDao"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -121,7 +121,7 @@ a{
 		<h1>欢迎来到工资记录查询</h1>
 		<br>
 		<div id= "head">
-			<div class="return"><a href="../html/salary.html">返回管理系统</a></div>
+			<div class="return"><a href="salary.jsp">返回管理系统</a></div>
 			<div class="select">
 			<form id="form" action="getsalary.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工编号" id="inquire"/>

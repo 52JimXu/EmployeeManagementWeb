@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>人力资源管理系统</title>
@@ -31,7 +33,7 @@
             overflow: hidden;
             width: 170px;
             height: 30px;
-            margin-top: 41px;
+            margin-top: 10px;
             border-radius: 25px;
             background-color: chartreuse;
         }
@@ -62,9 +64,12 @@
     <div class="nr">
         <div class="nav"><h1>人力资源管理系统</h1></div>
         <div class="zy">
-            <div class="xx"><a href="../jsp/getevent.jsp">查询员工事项</a></div>
-            <div class="xx"><a href="../jsp/deleteevent.jsp">删除员工事项</a></div>
-            <div class="xx"><a href="adminlogin.html">退出事项管理</a></div>
+            <div class="xx"><a href="getemployee.jsp">查看员工信息</a></div>
+            <div class="xx"><a href="updateemployee.jsp">修改员工信息</a></div>
+            <div class="xx" style="text-indent: 15px;"><a href="addemployee.jsp">添加员工</a></div>
+            <div class="xx" style="text-indent: 15px;"><a href="deleteemployee.jsp">删除员工</a></div>
+            <div class="xx"><a href="main.jsp">退出员工管理</a></div>
+
         </div>
     </div>
     <div class="bg"></div>

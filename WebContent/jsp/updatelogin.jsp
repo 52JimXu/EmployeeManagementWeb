@@ -99,7 +99,7 @@
 	<center>
 		<h1>欢迎来到登录信息修改</h1>
 		<div id= "head">
-			<a href="../html/login.html" class="a">返回管理系统</a>
+			<a href="logininfo.jsp" class="a">返回管理系统</a>
 			<form id="form" action="updatelogin.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工姓名" id="inquire"/>
 				<input type="submit" value="查询" id="submit"/>

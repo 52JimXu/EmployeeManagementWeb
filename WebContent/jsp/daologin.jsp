@@ -30,12 +30,12 @@
 		Object flag = list.get(1);
 		 if("true".equals(flag)){
 		 	if("1".equals(row)){
-		 		 response.sendRedirect("../html/adminlogin.html");
+		 		 response.sendRedirect("main.jsp");
 			 %>
 				<%-- <jsp:forword page=""/> --%>
 			<%
 			 }else{
-				 response.sendRedirect("../html/emplogin.html");
+				 response.sendRedirect("empmain.html");
 				//out.print("员工登入成功！"); 
 			%>
 				<%-- <jsp:forword page=""/> --%>

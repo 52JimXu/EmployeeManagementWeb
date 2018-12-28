@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>人力资源管理系统</title>
@@ -62,10 +64,11 @@
     <div class="nr">
         <div class="nav"><h1>人力资源管理系统</h1></div>
         <div class="zy">
-            <div class="xx"><a href="../jsp/getsalary.jsp">查询工资记录</a></div>
-            <div class="xx"><a href="../jsp/deletesalary.jsp">删除工资记录</a></div>
-            <div class="xx"><a href="../jsp/updatesalary.jsp">修改发工资时间</a></div>
-            <div class="xx"><a href="adminlogin.html">退出工资管理</a></div>
+            <div class="xx"><a href="getlogin.jsp">查询登录信息</a></div>
+            <div class="xx"><a href="jsp/updatelogin.jsp">修改登录信息</a></div>
+            <div class="xx"><a href="addlogin.jsp">新增登录信息</a></div>
+            <div class="xx"><a href="deletelogin.jsp">删除登录信息</a></div>
+            <div class="xx"><a href="main.jsp">退出登录管理</a></div>
         </div>
     </div>
     <div class="bg"></div>
