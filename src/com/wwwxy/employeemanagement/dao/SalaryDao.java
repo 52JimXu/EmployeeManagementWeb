@@ -232,6 +232,7 @@ public class SalaryDao {
 			}
 		}
 	}
+	
 	//≤È—Øby empid
 		public List<SalaryEntity> GetSalaryByEmpId(int id) {
 			JDBCUtil jdbc = new JDBCUtil();
