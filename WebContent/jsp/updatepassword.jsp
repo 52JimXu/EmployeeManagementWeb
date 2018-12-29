@@ -14,17 +14,17 @@
 <title>修改密码</title>
 <style type="text/css">
 	form{
-		margin:0px;
-		font-size:20px;
+		font-size:15px;
 	}
 	label{
 	            display: inline-block;
 	            width: 120px;/*或者 width: 100px;*/
 	        }
 	#submit{
-		width:100px;
-		height:50px;
-		font-size:25px;
+		width:60px;
+		height:40px;
+		font-size:17px;
+		/* margin:20px 0 0 80px; */
 	}
 	#submit:hover{
 		cursor:pointer;
@@ -87,6 +87,9 @@ a{
            display: inline-block;
            background-color:transparent;
        }
+       .username{
+    		margin-left:-35px;
+       }
         .welcome{
         	width:170px;
         	height:25px;
@@ -103,6 +106,62 @@ a{
         	width:100px;
         	height:50px;
         	margin:0 auto;
+        }
+          a{
+		font-size:15px;
+	}
+     .return{
+	/* float:left;	 */
+	margin-right:16%;
+	}
+    #head{
+		width:100%;
+	}
+	center{
+		width:590px;
+		height:410px;
+		margin:50px auto;
+	    background-color: white;
+	}
+	.a{
+	    height: 25px;
+	    color: black;
+	    text-decoration: none;
+	    background-color: #DCDCDC;
+	    font-size:15px;
+	    border-radius:5px;
+	    display:inline-block;
+	    margin-right:200px;
+	}
+	body{
+		background-image: url("../image/bg.jpg");
+        margin: 0px;
+        padding: 0px;
+		background-attachment:fixed;
+	}
+		.exit{
+        	display:inline-block;
+        	background-color:transparent;
+        	padding:0;
+        	color:white;
+        	text-decoration:none;
+        }
+        .exit:hover{
+        	display: inline-block;
+            color: red;
+            cursor:pointer;
+        }
+         .exit:active{
+           color:white;
+           display: inline-block;
+           background-color:transparent;
+       }
+        .welcome{
+        	width:170px;
+        	height:25px;
+        	float:right;
+        	margin-right:300px;
+        	color:white;
         }
 </style>
 </head>
@@ -122,19 +181,24 @@ a{
 	%>
 	<br>
 	<div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
-<div  class="box">
+<center>
 		<br>
 	<h1>欢迎来到密码信息修改</h1>
+	<br>
+	<div id= "head">
+		<div class="return"><a href="dopass.jsp" class="a">返回管理系统</a></div>
+	</div>
+	<br>
 	<br>
 		<form name="myform" action="doupdatepass.jsp?id=${sessionScope.id } " onsubmit="return checkAll()" method="post">
 			<div class="input123">
 			<div class="username"><label for="inputs">用户名:</label><input name="username" readonly type="text" value="${sessionScope.username }">
 			<span class="bkxg">*不可修改</span>
 			</div><br>
-			<div id="n"><label for="inputs">旧密码:</label><input id="nameinput" name="oldpassword" onblur="checkold()" type="password" value="">
+			<div id="n" style="margin-left:-95px;"><label for="inputs">旧密码:</label><input id="nameinput" name="oldpassword" onblur="checkold()" type="password" value="">
 			<span id="name"></span>
 			</div><br>
-			<div id="p"><label for="inputs">新密码:</label><input onblur="checknew()" name="password" id="passinput" type="password" value="">
+			<div id="p" style="margin-left:-95px;"><label for="inputs">新密码:</label><input onblur="checknew()" name="password" id="passinput" type="password" value="">
 			<span id="pass"></span>
 			</div><br>
 			
@@ -145,7 +209,7 @@ a{
 			</div>
 		</form>
 	<br><br>
-		</div>
+		</center>
 	
 	<script language="JavaScript">
 	    function checkold(){
@@ -159,7 +223,7 @@ a{
          return false;
      }else{
     	 	name.style.cssText="display:none;";
-    	 	n.style.cssText="";
+    	 	n.style.cssText="margin-left:-95px;";
     	 	return true;
     	 }
     }
@@ -176,11 +240,11 @@ a{
      }else if((oldobj.value)==(obj.value)){
     	 pass.innerHTML =("*新旧密码不能一样");
          pass.style.cssText="color:red;font-size:12px;display:inline-block;";
-         p.style.cssText="margin-left:0;";
+         p.style.cssText="margin-left:10px;";
          return false;
      }else{	
     	 	pass.style.cssText="display:none;";
-    	 	p.style.cssText="margin-left:0;";
+    	 	p.style.cssText="margin-left:-95px;";
     	 	return true;
     	 }
     }
