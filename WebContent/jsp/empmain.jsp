@@ -1,3 +1,4 @@
+<%@page import="com.wwwxy.employeemanagement.dao.LoginDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -93,13 +94,19 @@
      </style>
 </head>
 <body>
+<%
+	int id = (int)session.getAttribute("id");
+	LoginDao ld = new LoginDao();
+	int empid = ld.getEmpidById(id);
+	pageContext.setAttribute("empid", empid);
+%>
 <br>
 <div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
     <div class="nr">
         <div class="nav"><h1>人力资源管理系统</h1></div>
         <div class="zy">
-            <div class="xx"><a href="">查询工资信息</a></div>
-            <div class="xx"><a href="">查询事项信息</a></div>
+            <div class="xx"><a href="getempsalary.jsp?empid=${empid}">查询工资信息</a></div>
+            <div class="xx"><a href="getempcheckdetails.jsp?empid=${empid }">查询事项信息</a></div>
             <div class="xx"><a href="">考勤打卡系统</a></div>
             <div class="xx"><a href="updatepassword.jsp">修改密码</a></div>
             <div class="xx"><a href="exit.jsp">退出管理系统</a></div>
