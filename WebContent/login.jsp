@@ -130,12 +130,13 @@
                 //如果未能通过校验，在文本框后显示红色错误的信息
                	passError.innerHTML="*密码不能为空";
               	passError.style.cssText="color:red;font-size:12px;display:inline-block;";
-              	password.style.cssText="margin-left:0;";
+              	password.style.cssText="margin-left:80px;";
               	flag=false;
             }else{
                 //如果通过，在文本框显示绿色提示信息
               	passError.innerHTML="";
               	passError.style.cssText="color:green;display:inline-block;";
+            	password.style.cssText="margin-left:5px";
                	flag=true;
         	}
            	 	return flag;
