@@ -9,6 +9,11 @@
 	}else{
 		if((int)session.getAttribute("admin")==1){
 			response.sendRedirect("main.jsp");
+		}else{
+			int id = (int)session.getAttribute("id");
+			LoginDao ld = new LoginDao();
+			int empid = ld.getEmpidById(id);
+			pageContext.setAttribute("empid", empid);
 		}
 	}
 %>
@@ -94,12 +99,6 @@
      </style>
 </head>
 <body>
-<%
-	int id = (int)session.getAttribute("id");
-	LoginDao ld = new LoginDao();
-	int empid = ld.getEmpidById(id);
-	pageContext.setAttribute("empid", empid);
-%>
 <br>
 <div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
     <div class="nr">
@@ -107,7 +106,7 @@
         <div class="zy">
             <div class="xx"><a href="getempsalary.jsp?empid=${empid}">查询工资信息</a></div>
             <div class="xx"><a href="getempcheckdetails.jsp?empid=${empid }">查询事项信息</a></div>
-            <div class="xx"><a href="">考勤打卡系统</a></div>
+            <div class="xx"><a href="docheck.jsp">考勤打卡系统</a></div>
             <div class="xx"><a href="updatepassword.jsp">修改密码</a></div>
             <div class="xx"><a href="exit.jsp">退出管理系统</a></div>
         </div>

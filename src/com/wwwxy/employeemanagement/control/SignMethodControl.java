@@ -28,12 +28,12 @@ public class SignMethodControl {
 				//³Ùµ½
 				flag = "³Ùµ½";
 			}
-			if(t3>t1 && t4<t2){
-				flag = "³Ùµ½,ÔçÍË";
-			}
 			if(t4<t2){
 				//ÔçÍË
 				flag = "ÔçÍË";
+			}
+			if(t3>t1 && t4<t2){
+				flag = "³Ùµ½,ÔçÍË";
 			}
 			if(t3>t1 && t4>(t2+360000)){
 				flag = "³Ùµ½,¼Ó°à";

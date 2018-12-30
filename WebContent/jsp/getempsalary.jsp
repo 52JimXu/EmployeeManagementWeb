@@ -7,13 +7,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%
-	/* if(session.getAttribute("admin")==null){
+	 if(session.getAttribute("admin")==null){
 		response.sendRedirect("../login.jsp");
 	}else{
-		if((int)session.getAttribute("admin")==0){
-			response.sendRedirect("empmain.jsp");
+		if((int)session.getAttribute("admin")==1){
+			response.sendRedirect("main.jsp");
 		}
-	} */
+	} 
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -147,6 +147,8 @@ a{
 	}
 	pageContext.setAttribute("list", list);
 %>
+<br>
+	<div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
 <div  class="box">
 		<br>
 		<h1>欢迎来到工资记录查询</h1>

@@ -10,7 +10,7 @@ public class SalarySumDao {
 	//更新工资
 	public float SalarySum(int empid) {
 		EventDao ed = new EventDao();
-		List<EventEntity> list=ed.getAllEventEntity(empid);
+		List<EventEntity> list=ed.getEventById(empid);
 		int award = 0;
 		for(EventEntity list1:list){
 			award=list1.geteAward();

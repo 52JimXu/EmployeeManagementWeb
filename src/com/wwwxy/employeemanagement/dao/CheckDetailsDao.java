@@ -217,6 +217,9 @@ public class CheckDetailsDao extends JDBCUtil{
 				e.printStackTrace();
 			}
 		}
+		int empid = new CheckDetailsDao().GetEmpidByCid(cd.getCid());
+		SignMethodDao smd = new SignMethodDao();
+		smd.UpdateEventByEmpid(empid, cd.getCid());
 		return row;
 	}
 	//Ç©µ½

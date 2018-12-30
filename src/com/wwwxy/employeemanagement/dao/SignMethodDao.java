@@ -24,7 +24,7 @@ public class SignMethodDao {
 		}else{
 			status = cdd.GetCheckStatusByCid(cid);
 		}
-		System.out.println(status);
+		//System.out.println(status);
 		String[] strs = status.split(",");
 		for(String str:strs){
 			if("迟到".equals(str)){
@@ -46,10 +46,10 @@ public class SignMethodDao {
 			}
 		}
 		updateEventByEmpId(empid, a, b, c, d);
-		System.out.println("更新事项记录成功");
+		//System.out.println("更新事项记录成功");
 		float salary = new SalarySumDao().SalarySum(empid);
 		new SalaryDao().UpdateSalaryByEmpId(empid, salary);
-		System.out.println("更新工资记录成功");
+		//System.out.println("更新工资记录成功");
 	}
 	
 	//修改考勤后通过empid 更新事项
@@ -89,6 +89,8 @@ public class SignMethodDao {
 				e1.printStackTrace();
 			}
 		}
+		float salary = new SalarySumDao().SalarySum(empid);
+		new SalaryDao().UpdateSalaryByEmpId(empid, salary);
 		return row;
 	}
 }

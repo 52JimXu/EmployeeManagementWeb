@@ -145,7 +145,7 @@
 			<label for="inputs">上班打卡:</label><input name="checkin" class="disabled" type="text" readonly value="${list[0].ccheckin }"><span>*不可修改</span><br><br>
 			<label for="inputs">下班打卡:</label><input name="checkout" class="disabled" type="text" readonly value="${list[0].ccheckout }"><span>*不可修改</span><br><br>
 			<div id="status"><label for="inputs">考勤状态:</label>
-    		<select>
+    		<select name="status">
     			<c:forEach begin="0" end="6" var="str" step="1">
 	    				 <c:if test="${lists[str] eq list[0].cstatus}"    >
 	    					<option value="${lists[str]}" selected >${lists[str]}</option>
