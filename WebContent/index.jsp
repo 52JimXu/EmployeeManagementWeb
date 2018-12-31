@@ -83,43 +83,9 @@
 		background-attachment:fixed;
 	}
     </style>
+    <script src="layer/jquery-1.11.3.min.js"></script>
+    <script src="layer/layer/layer.js"></script>
     <script language="JavaScript">
-        function checkName(){
-            //获取用户输入的数据
-            var username = document.myform.username.value;
-            
-            var flag;
-            var rule = /^\w{1,10}$/;
-            //对数据检验，不能为空
-            var userError= document.getElementById("userError");
-            if(username==null||username==""){
-                //如果未能通过校验，在文本框后显示红色错误的信息
-               userError.innerHTML="*用户名不能为空";
-               userError.style.cssText="color:red;font-size:12px;display:inline-block;";
-               user.style.cssText="margin-left:95px;";
-               flag=false;
-            }else{
-                /* if(username.length>10||username.length<1){
-                 //如果未能通过校验，在文本框后显示红色错误的信息
-                 span.style.color="red";
-                 span.innerHTML="✖用户名1-10";
-                 flag=false;
-                 }else{
-                 if(!rule.test(username)){//如果未能通过校验，在文本框后显示红色错误的信息
-                 span.style.color="red";
-                 span.innerHTML="✖用户名只能包含字母，数字或下划线";
-                 flag=false;
-                 }else{ */
-                //如果通过，在文本框显示绿色提示信息
-                 userError.innerHTML="✔";
-                userError.style.cssText="color:green;display:inline-block;";
-                user.style.cssText="margin-left:16px; margin-top:38.9px;";
-                flag=true;
-           /*  } */
-          
-        	}
-           	 	return flag;
-            }
         function checkPassword(){
             //获取用户输入的数据
             var userpassword = document.myform.userpassword.value;
@@ -136,22 +102,72 @@
                 //如果通过，在文本框显示绿色提示信息
               	passError.innerHTML="";
               	passError.style.cssText="color:green;display:inline-block;";
-            	password.style.cssText="margin-left:5px";
+              	password.style.cssText="margin-left:0";
                	flag=true;
         	}
            	 	return flag;
             }
-        function checkAll(){
-            if(checkName()) {
-                return true;
-            }else{
-                return false;
-            }
-            if(checkPassword()) {
-                return true;
-            }else{
-                return false;
-            }
+        
+        function user(){
+        	var $username = $("#username").val();
+        	var $error = $("#userError");
+        	var $user = $("#user");
+			var flag;
+        	$.ajax({
+        		url:"LoginServlet",
+        		请求方式:"post",
+        		data:"username="+$username,
+        		success:function(result,testStatus){
+        			if(result == "true"){
+        				$error[0].innerHTML = "✔";
+        				$error[0].style.cssText="color:green;display:inline-block;";
+        				$user[0].style.cssText="margin-left:12px;"
+        			}else{
+        				$error[0].innerHTML = "✖";
+        				$error[0].style.cssText="color:red;display:inline-block;";
+        				$user[0].style.cssText="margin-left:12px;"
+        			}
+        		}
+        	});
+        }
+        function login(){
+        	user();
+        	var $username = $("#username").val();
+        	var $password = $("#passwordinput").val();
+        	layer.msg('努力加载中...', {
+        		  icon: 16
+        		  ,shade: 0.01,
+        		  time:5000
+        		});
+        	var $error = $("#userError");
+        	setTimeout(function() {
+        		if($error[0].style.color=="green"){
+            		if(checkPassword()){
+            			$.ajax({
+            				url:"LoginServlet2",
+            				请求方式:"post",
+                    		data:"username="+$username+"&password="+$password,
+                    		success:function(result,testStatus){
+                    			if(result == "1"){
+                    				window.document.location.href="jsp/main.jsp";
+                    			}else if(result == "0"){
+                    				window.document.location.href="jsp/empmain.jsp";
+                    			}else{
+                    				layer.alert('用户名或密码错误',{icon:2});
+                    			}
+                    		}
+            			});
+            			
+            			
+            		}else{
+            			layer.alert('密码不能为空',{icon:2});
+            		}
+            	}else{
+            		layer.alert('用户名错误',{icon:2});
+            	}
+            }, 1200);
+        	
+        
         }
     </script>
 </head>
@@ -161,19 +177,19 @@
 	<br>
     <h1>人力资源管理系统</h1>
 
-    <form  class="form" name="myform" onsubmit="return checkAll()" action="jsp/daologin.jsp" method="post">
+    <form  class="form" name="myform">
     <div id= "inputtwo">
         <div id="user">
-            <label >用户名:</label><input type="text" name="username" onblur="checkName()"/>
+            <label >用户名:</label><input id="username" type="text" name="username" onblur="user()"/>
             <span id="userError"></span><br><br>
         </div>
         <div id="password">
-            <label >密码:</label><input type="password" name="userpassword"  onblur="checkPassword()"/>
+            <label >密码:</label><input type="password" id="passwordinput" name="userpassword"  onblur="checkPassword()"/>
             <span id="passError"></span><br>
         </div>
     </div>
         <div class="anniu">
-            <input value="提交" type="submit" class="q1 submit"/>
+            <input value="登录" type="button" class="q1 submit" onclick="login()"/>
             &nbsp;&nbsp;
             <input value="重置" type="button" class="q1 reset" onclick="javascript:window.location.reload()" />  
      																	<!--刷新页面 -->

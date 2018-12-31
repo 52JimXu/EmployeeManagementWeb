@@ -10,7 +10,7 @@
 <%
 	session.removeAttribute("admin");
 	session.removeAttribute("username");
-	response.sendRedirect("../login.jsp");
+	response.sendRedirect("../index.jsp");
 %>
 </body>
 </html>

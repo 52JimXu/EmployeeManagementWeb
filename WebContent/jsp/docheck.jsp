@@ -7,7 +7,7 @@
 <html>
 <%
 	 if(session.getAttribute("admin")==null){
-		response.sendRedirect("../login.jsp");
+		response.sendRedirect("../index.jsp");
 	}else{
 		if((int)session.getAttribute("admin")==1){
 			response.sendRedirect("main.jsp");
@@ -15,6 +15,8 @@
 	} 
 %>
 <head>
+<script src="../layer/jquery-1.11.3.min.js"></script>
+	<script src="../layer/layer/layer.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>考勤打卡</title>
 	<style type="text/css">

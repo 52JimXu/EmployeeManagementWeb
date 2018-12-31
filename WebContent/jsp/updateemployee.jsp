@@ -9,7 +9,7 @@
 <html>
 <%
 	if(session.getAttribute("admin")==null){
-		response.sendRedirect("../login.jsp");
+		response.sendRedirect("../index.jsp");
 	}else{
 		if((int)session.getAttribute("admin")==0){
 			response.sendRedirect("empmain.jsp");
