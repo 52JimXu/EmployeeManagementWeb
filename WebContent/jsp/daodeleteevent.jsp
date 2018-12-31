@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -13,13 +15,31 @@
 		EventDao ed = new EventDao();
 		int row = ed.DropEventEntityByempidone(id);
 		if(row==1){
-			out.print("执行成功！");
-			//执行成功，重定向更新3秒回“deletelogin.jsp”
-			response.setHeader("refresh", "3;URL=deleteevent.jsp");
+			%>
+			<script type="text/javascript">
+				layer.confirm('执行成功', {
+				  btn: ['确定'], //按钮
+				  icon:1
+				}, function(){
+					window.document.location.href="deleteevent.jsp";
+				});
+			</script>
+			
+			<% 
+			response.setHeader("refresh", "10;URL=deleteevent.jsp");
 		}else{
-			out.print("执行失败！");
-			//执行失败，重定向更新3秒回“deletelogin.jsp”
-			response.setHeader("refresh", "3;URL=deleteevent.jsp");
+			%>
+			<script type="text/javascript">
+				layer.confirm('执行失败', {
+				  btn: ['确定'], //按钮
+				  icon:2
+				}, function(){
+					window.document.location.href="deleteevent.jsp";
+				});
+			</script>
+			
+			<% 
+			response.setHeader("refresh", "10;URL=deleteevent.jsp");
 		}
 	%>
 </body>

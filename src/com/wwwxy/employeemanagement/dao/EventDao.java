@@ -189,6 +189,7 @@ public class EventDao extends JDBCUtil {
 	
 	//通过empid删除事项
 	public void DropEventEntityByempid(int empid){
+		new SalaryDao().deleteByempid(empid);
 		PreparedStatement ps = null;
 		Connection con = this.getConnection();
 		String sql = "delete from event where empid = ?";
@@ -208,11 +209,10 @@ public class EventDao extends JDBCUtil {
 				e.printStackTrace();
 			}
 		}
-		new SalaryDao().deleteByempid(empid);
-		
 	}
 	
 	public int DropEventEntityByempidone(int empid){
+		new SalaryDao().deleteByempid(empid);
 		int row=0;
 		PreparedStatement ps = null;
 		Connection con = this.getConnection();
@@ -233,7 +233,7 @@ public class EventDao extends JDBCUtil {
 				e.printStackTrace();
 			}
 		}
-		new SalaryDao().deleteByempid(empid);
+
 		return row;
 		
 	}

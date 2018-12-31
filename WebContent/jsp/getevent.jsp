@@ -17,6 +17,8 @@
 	}
 %>
 <head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>事项记录查询</title>
 <style type= "text/css">
@@ -142,8 +144,12 @@ a{
 		List<EventEntity> list = null;
 		EventDao ed = new EventDao();
 		if(request.getParameter("inquire")!=null){
+			try{
 			id = Integer.parseInt(request.getParameter("inquire"));
 			list = ed.getEventById(id);
+			}catch(Exception e){
+				list = ed.getAllEvent();
+			}
 		}else{
 			list = ed.getAllEvent();
 		}
@@ -156,11 +162,11 @@ a{
 		<h1>欢迎来到事项记录查询</h1>
 	<br>
 		<div id= "head">
-			<div class="return"><a href="event.jsp">返回管理系统</a></div>
+			<div class="return"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="event.jsp">返回管理系统</a></div>
 			<div class="select">
 			<form id="form" action="getevent.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工编号" id="inquire"/>
-				<input type="submit" value="查询" id="submit"/>
+				<input type="submit" onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" value="查询" id="submit"/>
 			</form>
 			</div>
 		</div>

@@ -7,19 +7,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 <body>
 	<%
 		Integer id = Integer.parseInt(request.getParameter("id")); 
 		SalaryDao ld = new SalaryDao();
 		int row = ld.delete(id);
 		if(row==1){
-			out.print("执行成功！");
-			//执行成功，重定向更新3秒回“deletelogin.jsp”
-			response.setHeader("refresh", "3;URL=deletesalary.jsp");
+			%>
+			<script type="text/javascript">
+				layer.confirm('执行成功', {
+				  btn: ['确定'], //按钮
+				  icon:1
+				}, function(){
+					window.document.location.href="deletesalary.jsp";
+				});
+			</script>
+			
+			<% 
+			response.setHeader("refresh", "10;URL=deletesalary.jsp");
 		}else{
-			out.print("执行失败！");
-			//执行失败，重定向更新3秒回“deletelogin.jsp”
-			response.setHeader("refresh", "3;URL=deletesalary.jsp");
+			%>
+			<script type="text/javascript">
+				layer.confirm('执行失败', {
+				  btn: ['确定'], //按钮
+				  icon:2
+				}, function(){
+					window.document.location.href="deletesalary.jsp";
+				});
+			</script>
+			
+			<% 
+			response.setHeader("refresh", "10;URL=deletesalary.jsp");
 		}
 	%>
 </body>

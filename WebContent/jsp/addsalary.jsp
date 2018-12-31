@@ -15,11 +15,10 @@
 	}
 %>
 <head>
-<script src="../layer/jquery-1.11.3.min.js"></script>
-    <script src="../layer/layer/layer.js"></script><script src="../layer/jquery-1.11.3.min.js"></script>
+ <script src="../layer/jquery-1.11.3.min.js"></script>
     <script src="../layer/layer/layer.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>新增管理员登录信息</title>
+<title>新增员工事项信息</title>
 <style type="text/css">
 	form{
 		margin:0 77px 0 0;
@@ -29,13 +28,13 @@
 	            display: inline-block;
 	            width: 120px;/*或者 width: 100px;*/
 	        }
-	#submit{
+	#add{
 		width:60px;
 		height:40px;
 		font-size:17px;
 		margin:20px 0 0 80px;
 	}
-	#submit:hover{
+	#add:hover{
 		cursor:pointer;
 	}
 	
@@ -74,7 +73,7 @@
      	display: inline-block;
 	    width: 230px;/*或者 width: 100px;*/
      }
-     a{
+      a{
 		font-size:15px;
 	}
      .return{
@@ -85,12 +84,12 @@
 		width:100%;
 	}
 	center{
-		width:650px;
-		height:430px;
+		width:500px;
+		height:400px;
 		margin:50px auto;
 	    background-color: white;
 	}
-	  .a{
+	.a{
 	    height: 25px;
 	    color: black;
 	    text-decoration: none;
@@ -109,7 +108,7 @@
 	#n{
 		margin-left:-15px;
 	}
-	.exit{
+		.exit{
         	display:inline-block;
         	background-color:transparent;
         	padding:0;
@@ -137,9 +136,10 @@
 </head>
 <br>
 	<div class="welcome">欢迎你:${sessionScope.username },<a class="exit" href="exit.jsp">退出</a></div>
-<body>
+<body onload="getTime()">
 
 			<%
+				
 				EmployeeDao ed = new EmployeeDao();
 				EmployeeEntity ee=new EmployeeEntity();
 				int[] empid = new int[ed.GetMaxId()];
@@ -149,30 +149,19 @@
 
 <center>
 	<br>
-	<h1>欢迎来到管理员登录信息新增</h1>
+	<h1>欢迎来到员工事项信息新增</h1>
 	<br>
 	<div id= "head">
-		<div class="return"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="addlogin.jsp" class="a">返回管理系统</a></div>
+		<div class="return"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="salary.jsp" class="a">返回管理系统</a></div>
 	</div>
 	<br>
-		<form name="myform" method="post" action="doaddadminlogin.jsp" onsubmit="return checkAll()">
-			<div id="n">
-			<label for="inputs">用户名:</label><input onblur="checkname()" name="username" id="nameinput" type="text"  value="">
-			<span id ="name"></span>
-			<br><br>
-			</div>
-			<div class="pass" id="p">
-			<label for="inputs">密码:</label>
-			<input id="passinput" onblur="checkpass()" name="password" type="password" value="1234" /><span id="pass" class="bkxg">*默认密码为1234，建议修改</span>
-			<br><br>
-			</div>
-				
-			<!-- <label class="lable" for="inputs">请选择该员工的ID：</label>	
-			<select name="year" id="year" onchange="getday()" >
+		<form name="myform" method="post" action="doaddemplogin.jsp" onsubmit="return checkAll()">
+			<label class="lable" for="inputs">请选择该员工的ID：</label>	
+			<select name="empid" id="year" >
 			<option value="101">101</option>
-    		</select> 
-    		<br><br>-->
-    		<input onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" type="submit" id="submit" value="新增">
+    		</select>
+    		<br><br>
+    		<input type="button" id="add" onclick="addevent()" value="新增">
 		</form>
 	
 	</center>
@@ -181,7 +170,8 @@
 	
 	
 	<script language="JavaScript">
-	<%--  function getTime(){
+    function getTime(){
+    	var year = document.myform.empid;
         var html="";
         	<%
             for(EmployeeEntity lists:list){
@@ -193,53 +183,28 @@
     		} 
             %>
         year.innerHTML = html;
-    }--%>
-    function checkname(){
-        var obj = document.getElementById("nameinput");
-        var name = document.getElementById("name");
-        var n = document.getElementById("n");
-     if((obj.value)==""){
-         name.innerHTML =("*姓名不正确");
-         name.style.cssText="color:red;font-size:12px;display:inline-block;";
-         n.style.cssText="margin-left:55px;";
-         return false;
-     }else{
-    	 	name.style.cssText="display:none;";
-    	 	n.style.cssText="";
-    	 	return true;
-    	 }
     }
-    function checkpass(){
-        var obj = document.getElementById("passinput");
-        var pass = document.getElementById("pass");
-        var p = document.getElementById("p");
-     if((obj.value)==""){
-         pass.innerHTML =("*密码不能为空");
-         pass.style.cssText="color:red;font-size:12px;display:inline-block;";
-         p.style.cssText="margin-left:60px;";
-         return false;
-     }else{	
-    	 	pass.style.cssText="display:none;";
-    	 	p.style.cssText="margin-left:0;";
-    	 	return true;
-    	 }
-    }
-    function checkAll(){
-    	var flag;
-    	if(checkname()){
-    		flag =ture;
-    		if(checkpass()){
-    			flag = true;
-    		}else{
-    			flag =false;
+    function addevent(){
+    	var $empid = $('#year').val();
+    	layer.msg('努力加载中...', {
+  		  icon: 16
+  		  ,shade: 0.01,
+  		  time:5000
+  		});
+    	 $.ajax({
+    		url:"../AddSalaryServlet",
+    		请求方式:"post",
+    		data:"empid="+$empid,
+    		success:function(result,testStatus){
+    			if(result == "1"){
+    				layer.alert('新增成功',{icon:1});
+    			}else{
+    				layer.alert('新增失败，已存在改员工工资信息',{icon:2});
+    			}
     		}
-    	}else{
-    		flag = false;
-    	}
-    	return flag;
-    	
+    	}); 
     }
-</script> 
+</script>
 	
 	
 </body>

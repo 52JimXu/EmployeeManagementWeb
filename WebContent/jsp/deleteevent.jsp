@@ -17,6 +17,8 @@
 	}
 %>
 <head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>事项记录删除</title>
 <style type= "text/css">
@@ -160,8 +162,12 @@ a{
 		List<EventEntity> list = null;
 		EventDao ed = new EventDao();
 		if(request.getParameter("inquire")!=null){
+			try{
 			id = Integer.parseInt(request.getParameter("inquire"));
 			list = ed.getEventById(id);
+			}catch(Exception e){
+				list = ed.getAllEvent();
+			}
 		}else{
 			list = ed.getAllEvent();
 		}
@@ -175,7 +181,7 @@ a{
 		<h1>欢迎来到事项记录删除</h1>
 	<br>
 		<div id= "head">
-			<div class="return"><a href="event.jsp" class="a">返回管理系统</a></div>
+			<div class="return"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="event.jsp" class="a">返回管理系统</a></div>
 			<div class="select">
 			<form id="form" action="deleteevent.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工编号" id="inquire"/>
@@ -211,7 +217,7 @@ a{
 				<td>${str.eOvertime}</td>
 				<td>${str.eBigevent}</td>
 				<td>${str.eAward}</td>
-				<td><a href="daodeleteevent.jsp?id=${str.eMpid}" class="anniu">删除</a></td>
+				<td><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="daodeleteevent.jsp?id=${str.eMpid}" class="anniu">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>

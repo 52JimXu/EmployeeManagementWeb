@@ -15,6 +15,8 @@
 	}
 %>
 <head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增员工信息</title>
 </head>
@@ -139,7 +141,7 @@
 	<h1>欢迎来到员工信息新增</h1>
 	<br>
 	<div id= "head">
-		<div class="return"><a href="employee.jsp" class="a">返回管理系统</a></div>
+		<div class="return"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="employee.jsp" class="a">返回管理系统</a></div>
 	</div>
 	<br>
 		<form name="myform"  method="post" action="doaddemployee.jsp" onsubmit="return checkAll()">
@@ -298,7 +300,7 @@ function checksex(){
 	if(flag){
 		return true;
 	}else{
-		alert("你还没有选择性别");
+		layer.alert("你还没有选择性别");
 		return false;
 	}
 }

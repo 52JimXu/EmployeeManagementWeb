@@ -12,7 +12,8 @@
 	}
 %>
 <head>
-
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
     <meta charset="UTF-8">
     <title>人力资源管理系统</title>
     <style type="text/css">

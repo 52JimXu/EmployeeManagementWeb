@@ -17,6 +17,8 @@
 	}
 %>
 <head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>修改考勤记录</title>
 <style type="text/css">
@@ -136,7 +138,7 @@
 	<h1>欢迎来到考勤记录修改</h1>
 	<br>
 	<div id= "head">
-		<div class="return"><a href="updatecheckdetails.jsp" class="a">返回考勤修改</a></div>
+		<div class="return"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="updatecheckdetails.jsp" class="a">返回考勤修改</a></div>
 	</div>
 	<br>
 		<form name="myform" onsubmit="return checkAll()" action="successupdatecheckdetails.jsp?id=${id }" method="post">
@@ -170,7 +172,7 @@
 		    </select>日
 			<span>*不可修改</span>
 			<br><br>
-			<input type="submit" id="submit" value="修改">
+			<input onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" type="submit" id="submit" value="修改">
 		</form>
 	</center>
 <script language="JavaScript">

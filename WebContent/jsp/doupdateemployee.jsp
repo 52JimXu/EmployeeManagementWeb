@@ -15,6 +15,8 @@
 	}
 %>
 <head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>修改员工信息</title>
 </head>
@@ -138,7 +140,7 @@
 	<h1>欢迎来到员工信息修改</h1>
 	<br>
 	<div id= "head">
-		<div class="return"><a href="updateemployee.jsp" class="a">返回员工修改</a></div>
+		<div class="return"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="updateemployee.jsp" class="a">返回员工修改</a></div>
 	</div>
 	<br>
 		<form name="myform" onsubmit="return checkAll()" action="successupdateemployee.jsp?id=${id }" method="post">
@@ -186,7 +188,7 @@
 			
 			
 			<br>
-			<input type="submit" id="submit" value="修改">
+			<input onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" type="submit" id="submit" value="修改">
 			
 		</form>
 	

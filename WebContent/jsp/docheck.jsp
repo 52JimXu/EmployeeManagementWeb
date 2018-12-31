@@ -91,7 +91,7 @@
 		<h1>欢迎来到考勤记录查询</h1>
 	<br>
 		<div id= "head">
-			<div class="return"><a href="checkdetail.jsp">返回管理系统</a></div>
+			<div class="return"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="checkdetail.jsp">返回管理系统</a></div>
 		</div>
 		<br><br><br>
 		<div class="checkin" onclick="checkin()"><a href="daodocheck.jsp?c=1">上班打卡</a></div>

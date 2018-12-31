@@ -30,14 +30,16 @@
 					  time:2000
 					});
 					setTimeout(function(){
-					layer.alert('签到成功', {
-					  icon: 1,
-					  skin: 'layer-ext-moon' 
-					});
+						layer.confirm('签到成功', {
+							  btn: ['确定'], //按钮
+							  icon:1
+							}, function(){
+								window.document.location.href="docheck.jsp";
+							});
 					}, 1000);
 				</script>
 				<% 
-				response.setHeader("refresh","3;docheck.jsp");
+				response.setHeader("refresh","10;docheck.jsp");
 			}else{
 				%>
 				<script>
@@ -48,14 +50,16 @@
 					  time:2000
 					});
 					setTimeout(function(){
-					layer.alert('签到失败，你已经签过到了', {
-					  icon: 2,
-					  skin: 'layer-ext-moon' 
-					});
+						layer.confirm('签到失败，你签过到了', {
+							  btn: ['确定'], //按钮
+							  icon:2
+							}, function(){
+								window.document.location.href="docheck.jsp";
+							});
 					}, 1000);
 				</script>
 				<% 
-				response.setHeader("refresh","3;docheck.jsp");
+				response.setHeader("refresh","10;docheck.jsp");
 			}
 		}else{
 			int i = cdd.GetCheckin(empid);
@@ -69,16 +73,20 @@
 					  time:2000
 					});
 					setTimeout(function(){
-					layer.alert('签退失败，你还没有签到', {
-					  icon: 2,
-					  skin: 'layer-ext-moon' 
-					});
+						layer.confirm('签退失败，你还未签到', {
+							  btn: ['确定'], //按钮
+							  icon:2
+							}, function(){
+								window.document.location.href="docheck.jsp";
+							});
 					}, 1000);
 				</script>
 				<% 
-				response.setHeader("refresh","3;docheck.jsp");
+				response.setHeader("refresh","10;docheck.jsp");
 			}else{
 				cdd.checkout(empid);
+				String cstatus = cdd.GetCheckStatus();
+				new SignMethodDao().UpdateEventByEmpid(empid, 0);
 				%>
 				<script>
 				layer.msg('加载中', {
@@ -88,16 +96,17 @@
 					  time:2000
 					});
 					setTimeout(function(){
-					layer.alert('签退成功', {
-					  icon: 1,
-					  skin: 'layer-ext-moon' 
-					});
+						layer.confirm('签退成功', {
+							  btn: ['确定'], //按钮
+							  icon:1
+							}, function(){
+								window.document.location.href="docheck.jsp";
+							});
 					}, 1000);
 				</script>
 				<% 
-				String cstatus = cdd.GetCheckStatus();
-				new SignMethodDao().UpdateEventByEmpid(empid, 0);
-				response.setHeader("refresh","3;docheck.jsp");
+				
+				response.setHeader("refresh","10;docheck.jsp");
 			}
 		}
 	%>

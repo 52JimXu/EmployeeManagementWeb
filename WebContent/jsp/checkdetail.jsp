@@ -12,6 +12,8 @@
 	}
 %>
 <head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
     <meta charset="UTF-8">
     <title>人力资源管理系统</title>
     <style type="text/css">
@@ -99,10 +101,10 @@
 <div class="nr">
     <div class="nav"><h1>欢迎来到考勤管理</h1></div>
     <div class="zy">
-        <div class="xx"><a href="getcheckdetails.jsp">查询考勤信息</a></div>
-        <div class="xx"><a href="updatecheckdetails.jsp">修改考勤状态</a></div>
-        <div class="xx"><a href="deletecheckdetails.jsp">删除考勤信息</a></div>
-        <div class="xx"><a href="main.jsp">退出考勤管理</a></div>
+        <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="getcheckdetails.jsp">查询考勤信息</a></div>
+        <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="updatecheckdetails.jsp">修改考勤状态</a></div>
+        <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="deletecheckdetails.jsp">删除考勤信息</a></div>
+        <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="main.jsp">退出考勤管理</a></div>
     </div>
 </div>
 <div class="bg"></div>

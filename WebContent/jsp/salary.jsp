@@ -12,6 +12,8 @@
 	}
 %>
 <head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
     <meta charset="UTF-8">
     <title>人力资源管理系统</title>
     <style type="text/css">
@@ -99,10 +101,11 @@
     <div class="nr">
         <div class="nav"><h1>人力资源管理系统</h1></div>
         <div class="zy">
-            <div class="xx"><a href="getsalary.jsp">查询工资记录</a></div>
-            <div class="xx"><a href="deletesalary.jsp">删除工资记录</a></div>
-            <div class="xx"><a href="updatesalary.jsp">修改发工资时间</a></div>
-            <div class="xx"><a href="main.jsp">退出工资管理</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="getsalary.jsp">查询工资记录</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="addsalary.jsp">新增工资记录</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="deletesalary.jsp">删除工资记录</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="updatesalary.jsp">修改发工资时间</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="main.jsp">退出工资管理</a></div>
         </div>
     </div>
     <div class="bg"></div>

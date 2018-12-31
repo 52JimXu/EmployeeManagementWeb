@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 </head>
 <body>
 	<%
@@ -17,11 +19,31 @@
 		CheckDetailsDao cdd = new CheckDetailsDao();
 		 int row = cdd.updatestatusBYCidone(cd);
 		if(row==1){
-			out.print("执行成功！");
-			response.setHeader("refresh","3;updatecheckdetails.jsp");
+			%>
+			<script type="text/javascript">
+				layer.confirm('执行成功', {
+				  btn: ['确定'], //按钮
+				  icon:1
+				}, function(){
+					window.document.location.href="updatecheckdetails.jsp";
+				});
+			</script>
+			
+			<% 
+			response.setHeader("refresh", "10;URL=updatecheckdetails.jsp");
 		}else{
-			out.print("执行失败！");
-			response.setHeader("refresh", "3;updatecheckdetails.jsp");
+			%>
+			<script type="text/javascript">
+				layer.confirm('执行失败', {
+				  btn: ['确定'], //按钮
+				  icon:2
+				}, function(){
+					window.document.location.href="updatecheckdetails.jsp";
+				});
+			</script>
+			
+			<% 
+			response.setHeader("refresh", "10;URL=updatecheckdetails.jsp");
 		} 
 	%>
 </body>

@@ -9,6 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>doaddemployee.jsp</title>
 </head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 <body>
 	<%
 		//员工登录信息增加
@@ -27,15 +29,48 @@
 		}
 		
 		if(flag){
-			out.print("此员工已经存在登录信息");
+			%>
+			<script type="text/javascript">
+				layer.confirm('执行失败,此员工已存在', {
+				  btn: ['确定'], //按钮
+				  icon:2
+				}, function(){
+					window.document.location.href="getlogin.jsp";
+				});
+			</script>
+			
+			<% 
+			response.setHeader("refresh", "10;URL=getlogin.jsp");
 		}else{
 		
 		int row = ld.addLogin(le);
 		
 		if(row==1){
-			response.sendRedirect("getlogin.jsp");//	成功
+			%>
+			<script type="text/javascript">
+				layer.confirm('执行成功', {
+				  btn: ['确定'], //按钮
+				  icon:1
+				}, function(){
+					window.document.location.href="getlogin.jsp";
+				});
+			</script>
+			
+			<% 
+			response.setHeader("refresh", "10;URL=getlogin.jsp");
 		}else{
-			out.print("失败");
+			%>
+			<script type="text/javascript">
+				layer.confirm('系统错误，请稍后再试', {
+				  btn: ['确定'], //按钮
+				  icon:0
+				}, function(){
+					window.document.location.href="getlogin.jsp";
+				});
+			</script>
+			
+			<% 
+			response.setHeader("refresh", "10;URL=getlogin.jsp");
 		}
 		}
 		

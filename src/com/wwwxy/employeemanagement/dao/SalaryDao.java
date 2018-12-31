@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 
 
+
+import com.wwwxy.employeemanagement.entity.EventEntity;
 import com.wwwxy.employeemanagement.entity.SalaryEntity;
 import com.wwwxy.employeemanagement.util.JDBCUtil;
 
@@ -266,7 +268,7 @@ public class SalaryDao {
 		//增加一条事项之后增加一条工资记录
 		public void AddSalaryAfterAddEvent(int empid) {
 			String sql = "insert into salary(eid,empid,ssum,stime)"
-					+ " values((select max(eid) from event),?,?,?)";
+					+ " values(?,?,?,?)";
 			try{
 				con = new JDBCUtil().getConnection();
 				ps = con.prepareStatement(sql);
@@ -275,10 +277,17 @@ public class SalaryDao {
 				cal.add(Calendar.DATE, 30);
 				Date date = cal.getTime();
 				String nextdate = df.format(date);
-				ps.setInt(1,empid);
+				EventDao ed = new EventDao();
+				List<EventEntity> list1 = ed.getEventById(empid);
+				int eid=0;
+				for(EventEntity list1s:list1){
+					eid = list1s.geteId();
+				}
+				ps.setInt(1,eid);
+				ps.setInt(2,empid);
 				float salary = new SalarySumDao().SalarySum(empid);
-				ps.setFloat(2,salary);
-				ps.setString(3,nextdate);
+				ps.setFloat(3,salary);
+				ps.setString(4,nextdate);
 				ps.executeUpdate();
 			}catch(Exception e){
 				e.printStackTrace();

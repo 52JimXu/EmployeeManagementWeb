@@ -12,6 +12,8 @@
 	}
 %>
 <head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
     <meta charset="UTF-8">
     <title>人力资源管理系统</title>
     <style type="text/css">
@@ -99,11 +101,11 @@
     <div class="nr">
         <div class="nav"><h1>人力资源管理系统</h1></div>
         <div class="zy">
-            <div class="xx"><a href="getlogin.jsp">查询登录信息</a></div>
-            <div class="xx"><a href="updatelogin.jsp">修改登录信息</a></div>
-            <div class="xx"><a href="addlogin.jsp">新增登录信息</a></div>
-            <div class="xx"><a href="deletelogin.jsp">删除登录信息</a></div>
-            <div class="xx"><a href="main.jsp">退出登录管理</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="getlogin.jsp">查询登录信息</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="updatelogin.jsp">修改登录信息</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="addlogin.jsp">新增登录信息</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="deletelogin.jsp">删除登录信息</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="main.jsp">退出登录管理</a></div>
         </div>
     </div>
     <div class="bg"></div>

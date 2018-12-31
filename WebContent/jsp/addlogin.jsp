@@ -12,6 +12,8 @@
 	}
 %>
 <head>
+<script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
     <style type="text/css">
@@ -99,9 +101,9 @@
     <div class="nr">
         <div class="nav"><h1>人力资源管理系统</h1></div>
         <div class="zy">
-            <div class="xx"><a href="addadminlogin.jsp">新增管理员</a></div>
-            <div class="xx"><a href="addemplogin.jsp">新增员工</a></div>
-            <div class="xx"><a href="logininfo.jsp">退出新增管理</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="addadminlogin.jsp">新增管理员</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="addemplogin.jsp">新增员工</a></div>
+            <div class="xx"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="logininfo.jsp">退出新增管理</a></div>
         </div>
     </div>
     <div class="bg"></div>

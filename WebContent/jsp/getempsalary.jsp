@@ -16,6 +16,8 @@
 	} 
 %>
 <head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>工资记录查询</title>
 <style type= "text/css">
@@ -154,7 +156,7 @@ a{
 		<h1>欢迎来到工资记录查询</h1>
 		<br>
 		<div id= "head">
-			<div class="return"><a href="salary.jsp">返回管理系统</a></div>
+			<div class="return"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="salary.jsp">返回管理系统</a></div>
 		</div>
 		<br><br>
 		<table  width="90%" class="table">

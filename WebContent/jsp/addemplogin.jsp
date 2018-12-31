@@ -15,6 +15,8 @@
 	}
 %>
 <head>
+<script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增员工登录信息</title>
 <style type="text/css">
@@ -150,7 +152,7 @@
 	<h1>欢迎来到员工登录信息新增</h1>
 	<br>
 	<div id= "head">
-		<div class="return"><a href="addlogin.jsp" class="a">返回管理系统</a></div>
+		<div class="return"><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="addlogin.jsp" class="a">返回管理系统</a></div>
 	</div>
 	<br>
 		<form name="myform" method="post" action="doaddemplogin.jsp" onsubmit="return checkAll()">
@@ -169,7 +171,7 @@
 			<option value="101">101</option>
     		</select>
     		<br><br>
-    		<input type="submit" id="submit" value="新增">
+    		<input onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" type="submit" id="submit" value="新增">
 		</form>
 	
 	</center>

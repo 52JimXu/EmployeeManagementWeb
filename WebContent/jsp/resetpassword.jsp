@@ -17,6 +17,8 @@
 	}
 %>
 <head>
+  <script src="../layer/jquery-1.11.3.min.js"></script>
+    <script src="../layer/layer/layer.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录信息重置</title>
 <style type= "text/css">
@@ -173,11 +175,11 @@ a{
 		<h1>欢迎来到登录信息重置</h1>
 		<br>
 		<div id= "head">
-			<div class="return"><a href="logininfo.jsp" class="a">返回管理系统</a></div>
+			<div class="return"><a href="dopass.jsp" class="a">返回管理系统</a></div>
 			<div class="select">
 			<form id="form" action="resetpassword.jsp" method="get">
 				<input type="text" name="inquire" placeholder="请输入查询员工姓名" id="inquire"/>
-				<input type="submit" value="查询" id="submit"/>
+				<input onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" type="submit" value="查询" id="submit"/>
 			</form>
 			</div>
 		</div>
@@ -227,7 +229,7 @@ a{
 						</c:otherwise>
 					</c:choose>
 				</td>
-				<td><a href="daoresetpassword.jsp?id=${str.id}" class="anniu">重置</a></td>
+				<td><a onclick="layer.msg('努力加载中',{icon:16,shade: 0.01,time:5000})" href="daoresetpassword.jsp?id=${str.id}" class="anniu">重置</a></td>
 				</tr>
 			</c:forEach>
 		</table>
