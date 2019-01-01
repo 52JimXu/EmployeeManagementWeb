@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
+import com.sun.org.apache.xerces.internal.util.Status;
 import com.wwwxy.employeemanagement.control.SignMethodControl;
 import com.wwwxy.employeemanagement.entity.CheckDetails;
 import com.wwwxy.employeemanagement.entity.CheckTimeEntity;
@@ -196,9 +197,148 @@ public class CheckDetailsDao extends JDBCUtil{
 		}
 		return row;
 	}
+	//修改考勤状态
 	public int updatestatusBYCidone(CheckDetails cd){
 		int row = 0;
+		String Status="";
+		int a=0,b=0,c=0,d=0;
 		Connection con = this.getConnection();
+		List<CheckDetails> list = getCheckDetails(cd.getCid());
+		for(CheckDetails lists:list){
+			Status = lists.getCstatus();
+		}
+		if(!Status.equals(cd.getCstatus()) ){
+			if("迟到".equals(Status)&&"正常".equals(cd.getCstatus())){
+				//迟到改正常
+				a--;
+			}
+			if("早退".equals(Status)&&"正常".equals(cd.getCstatus())){
+				b--;
+			}
+			if("迟到,早退".equals(Status)&&"正常".equals(cd.getCstatus())){
+				b--;a--;
+			}
+			if("旷工".equals(Status)&&"正常".equals(cd.getCstatus())){
+				d--;
+			}
+			if("加班".equals(Status)&&"正常".equals(cd.getCstatus())){
+				c--;
+			}
+			if("迟到,加班".equals(Status)&&"正常".equals(cd.getCstatus())){
+				c--;a--;
+			}
+			
+			if("正常".equals(Status)&&"迟到".equals(cd.getCstatus())){
+				a++;
+			}
+			if("正常".equals(Status)&&"早退".equals(cd.getCstatus())){
+				b++;
+			}
+			if("正常".equals(Status)&&"迟到,早退".equals(cd.getCstatus())){
+				b++;a++;
+			}
+			if("正常".equals(Status)&&"旷工".equals(cd.getCstatus())){
+				d++;
+			}
+			if("正常".equals(Status)&&"加班".equals(cd.getCstatus())){
+				c++;
+			}
+			if("正常".equals(Status)&&"迟到,加班".equals(cd.getCstatus())){
+				c++;a++;
+			}
+			
+			if("迟到".equals(Status)&&"迟到,早退".equals(cd.getCstatus())){
+				b++;
+			}
+			if("迟到".equals(Status)&&"旷工".equals(cd.getCstatus())){
+				d++;a--;
+			}
+			if("迟到".equals(Status)&&"加班".equals(cd.getCstatus())){
+				c++;a--;
+			}
+			if("迟到".equals(Status)&&"迟到,加班".equals(cd.getCstatus())){
+				c++;
+			}
+			
+			if("早退".equals(Status)&&"迟到,早退".equals(cd.getCstatus())){
+				a++;
+			}
+			if("早退".equals(Status)&&"旷工".equals(cd.getCstatus())){
+				d--;d++;
+			}
+			if("早退".equals(Status)&&"加班".equals(cd.getCstatus())){
+				b--;c++;
+			}
+			if("早退".equals(Status)&&"迟到,加班".equals(cd.getCstatus())){
+				c++;
+			}
+			
+			if("加班".equals(Status)&&"迟到,早退".equals(cd.getCstatus())){
+				c--;a++;b++;
+			}
+			if("加班".equals(Status)&&"旷工".equals(cd.getCstatus())){
+				c--;d++;
+			}
+			if("加班".equals(Status)&&"早退".equals(cd.getCstatus())){
+				c--;b++;
+			}
+			if("加班".equals(Status)&&"迟到".equals(cd.getCstatus())){
+				c--;a++;
+			}
+			if("加班".equals(Status)&&"迟到,加班".equals(cd.getCstatus())){
+				a++;
+			}
+			
+			if("旷工".equals(Status)&&"迟到,早退".equals(cd.getCstatus())){
+				d--;a++;b++;
+			}
+			if("旷工".equals(Status)&&"加班".equals(cd.getCstatus())){
+				d--;c++;
+			}
+			if("旷工".equals(Status)&&"早退".equals(cd.getCstatus())){
+				d--;b++;
+			}
+			if("旷工".equals(Status)&&"迟到".equals(cd.getCstatus())){
+				d--;a++;
+			}
+			if("旷工".equals(Status)&&"迟到,加班".equals(cd.getCstatus())){
+				d--;a++;c++;
+			}
+			
+			if("迟到,早退".equals(Status)&&"旷工".equals(cd.getCstatus())){
+				a--;b--;d++;
+			}
+			if("迟到,早退".equals(Status)&&"加班".equals(cd.getCstatus())){
+				a--;b--;c++;
+			}
+			if("迟到,早退".equals(Status)&&"早退".equals(cd.getCstatus())){
+				a--;
+			}
+			if("迟到,早退".equals(Status)&&"迟到".equals(cd.getCstatus())){
+				b--;
+			}
+			if("迟到,早退".equals(Status)&&"迟到,加班".equals(cd.getCstatus())){
+				c++;b--;
+			}
+			
+			if("迟到,加班".equals(Status)&&"旷工".equals(cd.getCstatus())){
+				a--;c--;d++;
+			}
+			if("迟到,加班".equals(Status)&&"加班".equals(cd.getCstatus())){
+				a--;
+			}
+			if("迟到,加班".equals(Status)&&"早退".equals(cd.getCstatus())){
+				a--;c--;b++;
+			}
+			if("迟到,加班".equals(Status)&&"迟到".equals(cd.getCstatus())){
+				c--;
+			}
+			if("迟到,加班".equals(Status)&&"迟到,早退".equals(cd.getCstatus())){
+				c--;b++;
+			}
+			
+		}
+		
 		PreparedStatement ps = null;
 		String sql = "update checkdetails set cstatus=? where cid=?";
 		try {
@@ -219,7 +359,7 @@ public class CheckDetailsDao extends JDBCUtil{
 		}
 		int empid = new CheckDetailsDao().GetEmpidByCid(cd.getCid());
 		SignMethodDao smd = new SignMethodDao();
-		smd.UpdateEventByEmpid(empid, cd.getCid());
+		smd.updateEventByEmpId(empid, a, b, c, d);
 		return row;
 	}
 	//签到

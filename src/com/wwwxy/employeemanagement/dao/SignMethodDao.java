@@ -66,8 +66,8 @@ public class SignMethodDao {
 			for(EventEntity lists:list){
 				eaward = lists.geteAward();
 				a = a+b+ lists.geteClocking();
-				c = lists.geteOvertime();
-				d = lists.geteBigevent();
+				c = c+lists.geteOvertime();
+				d = d+lists.geteBigevent();
 			}
 			ps.setInt(1, a);
 			ps.setInt(2, c);
